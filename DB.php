@@ -1,7 +1,6 @@
 <?php 
 
 include("connection.php");
-include("DB.php");
 $conn = new Connection ();
 
 $conn->createDatabase("project");

@@ -6,6 +6,8 @@ $cpasswordErrorMsg= "";
 $pattern = '/^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{8,}$/';
 
 include("user.php");
+include("connection.php");
+$connection = new Connection();
 
 
 
@@ -32,7 +34,7 @@ if(isset($_POST["submit"])){
 
     if (empty($usernameErrorMsg) && empty($passwordErrorMsg) && empty($cpasswordErrorMsg) && empty($emailErrorMsg)) {
         $user = new Users($firstName , $email ,$password);
-        $user-> insertUsers("project", $conn);
+        $user-> insertUsers("project", $connection->conn);
 
 
 

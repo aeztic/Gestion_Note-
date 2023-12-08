@@ -1,5 +1,4 @@
 <?php 
-include("connection.php");
 class Etudiant {
     private $id;
     private $firstName;
