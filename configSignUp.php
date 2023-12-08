@@ -6,7 +6,7 @@ $cpasswordErrorMsg= "";
 $pattern = '/^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{8,}$/';
 
 include("user.php");
-include("DB.php");
+
 
 
 if(isset($_POST["submit"])){
@@ -37,7 +37,7 @@ if(isset($_POST["submit"])){
 
 
 
-        header("Location: index.php");
+        //header("Location: index.php");
         //exit();
     }
 }
