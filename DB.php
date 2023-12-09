@@ -4,7 +4,7 @@ include("connection.php");
 $conn = new Connection ();
 
 $conn->createDatabase("project");
-$conn->selectDatabase("project");
+
 
 $queryEtudiant = "
 CREATE TABLE IF NOT EXISTS Etudiant (
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Users (
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
 ";
-
+$conn->selectDatabase("project");
 $conn->createTable($queryEtudiant);
 $conn->createTable($queryUsers);
 ?>

@@ -24,7 +24,7 @@ include('configSignUp.php');
             <div class="form signup">
                 <span class="title">Registration</span>
 
-                <form id="signupForm" action="" method="post">
+                <form id="signupForm"  method="post">
                     <div class="input-field">
                         <input name="signupName" id="signupName" type="text" placeholder="Enter your username" value="<?php if(isset($firstName)) echo $firstName; ?>">
                         <i class="uil uil-user"></i>
@@ -55,7 +55,7 @@ include('configSignUp.php');
 
                 <div class="login-signup">
                     <span class="text">Already a member?
-                        <a href="index.php" class="text login-link">Login Now</a>
+                        <a href="login.php" class="text login-link">Login Now</a>
                     </span>
                 </div>
             </div>

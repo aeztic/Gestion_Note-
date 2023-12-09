@@ -8,13 +8,15 @@ $pattern = '/^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{8,}$/';
 include("user.php");
 include("connection.php");
 $connection = new Connection();
+$connection->selectDatabase('project'); 
 
 
 
 if(isset($_POST["submit"])){
-    $firstName = $_POST["firstName"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $firstName = $_POST["signupName"];
+    $email = $_POST["signupEmail"];
+    $password = $_POST["signupPassword"];
+    $confirmPassword = $_POST["confirmPassword"];
 
     if(empty($firstName)){
         $firstNameErrorMsg = "User must be filled out!";
@@ -34,12 +36,12 @@ if(isset($_POST["submit"])){
 
     if (empty($usernameErrorMsg) && empty($passwordErrorMsg) && empty($cpasswordErrorMsg) && empty($emailErrorMsg)) {
         $user = new Users($firstName , $email ,$password);
-        $user-> insertUsers("project", $connection->conn);
+        $user-> insertUsers("Users", $connection->conn);
 
 
 
 
-        //header("Location: index.php");
+        header("Location: login.php");
         //exit();
     }
 }

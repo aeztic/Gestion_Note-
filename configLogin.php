@@ -1,6 +1,9 @@
 <?php
-include("DB.php");
+include("connection.php");
 include("user.php");
+$connection = new Connection();
+$connection->selectDatabase("project");
+
 $emailErrorMsg ="";
 $passwordErrorMsg ="" ;
 
@@ -21,17 +24,13 @@ if (isset($_POST['submit'])) {
     }
 
         if (empty($emailErrorMsg) && empty($passwordErrorMsg)) {
-            $sql = "SELECT email , password , username FROM Users WHERE email = '$emailValue'";  
-        
-        //$result = mysqli_query($conn, $sql);
-        if(mysqli_num_rows($result)>0){
-            $row =mysqli_fetch_assoc($result);
+            $row = Users::selectUserByEmail("Users", $connection->conn , $emailValue  );
             if (password_verify($passwordValue,$row['password'])) {
                 session_start();
-                $_SESSION['username'] = $row['username'];
+                $_SESSION['firsName'] = $row['firsName'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['password'];
-                header("Location: myDayTasks.php");
+                header("Location: test.php");
             }
             else{
                 $passwordErrorMsg = "Invalid password!";    
@@ -40,9 +39,8 @@ if (isset($_POST['submit'])) {
         else{
             $emailErrorMsg = "Invalid email!";
         }
-    
 
 
         }
-}
+
 ?>
