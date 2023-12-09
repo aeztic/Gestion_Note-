@@ -8,7 +8,7 @@
 
 :root{
     /* ===== Colors ===== */
-    --primary-color: #0E4BF1;
+    --primary-color: #08D9D6;
     --panel-color: #FFF;
     --text-color: #000;
     --black-light-color: #707070;
@@ -64,13 +64,14 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover{
 }
 
 nav{
+    color: white;
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 250px;
     padding: 10px 14px;
-    background-color: var(--panel-color);
+    background-color: #FF2E63;
     border-right: 1px solid var(--border-color);
     transition: var(--tran-05);
 }
@@ -95,7 +96,7 @@ nav .logo-image img{
 nav .logo-name .logo_name{
     font-size: 22px;
     font-weight: 600;
-    color: var(--text-color);
+    color: white;
     margin-left: 14px;
     transition: var(--tran-05);
 }
@@ -139,12 +140,12 @@ body.dark li a:hover:before{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--black-light-color);
+    color: white;
 }
 .menu-items li a .link-name{
     font-size: 18px;
     font-weight: 400;
-    color: var(--black-light-color);    
+    color: white;    
     transition: var(--tran-05);
 }
 nav.close li a .link-name{

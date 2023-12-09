@@ -26,14 +26,14 @@
                 </a>
             </li>
                 <li>
-                <a href="test.php">
-                    <i class="uil uil-book-reader"></i>
+                <a href="students.php">
+                    <i class="uil uil-graduation-cap"></i>
                     <span class="link-name">students</span>
                 </a>
             </li>
                 <li><a href="#">
-                    <i class="uil uil-graduation-cap"></i>
-                    <span class="link-name">Grades</span>
+                    <i class="uil uil-file-edit-alt"></i>
+                    <span class="link-name">Add student</span>
                 </a></li>
                 <li><a href="#">
                     <i class="uil uil-file-edit-alt"></i>
