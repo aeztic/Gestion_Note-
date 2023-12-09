@@ -26,7 +26,7 @@ class Users {
     
     }
 
-        static function deleteClient($tableName,$conn,$id){               
+        static function deleteUser($tableName,$conn,$id){               
             $sql = "DELETE FROM $tableName WHERE id='$id'";
             
             if (mysqli_query($conn, $sql)) {
