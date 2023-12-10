@@ -31,7 +31,7 @@
                     <span class="link-name">students</span>
                 </a>
             </li>
-                <li><a href="#">
+                <li><a href="addStudents.php">
                     <i class="uil uil-file-edit-alt"></i>
                     <span class="link-name">Add student</span>
                 </a></li>
@@ -56,7 +56,7 @@
                 </a></li>
 
                 <div class="mode-toggle">
-                    <span class="switch"></span>
+                    
                 </div>
             </li>
             </ul>

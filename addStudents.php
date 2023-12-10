@@ -15,17 +15,14 @@
     <section class="dashboard">
     <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
         
             <img src="2.png" alt="">
             </div>
                 
             <div class="dash-content">
-                    <h1>welcome</h1>
+                    <?php 
+                    include("form.php");
+                    ?>
             </div>
     </section>
     <script src="script.js"></script>

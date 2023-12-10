@@ -36,19 +36,21 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                 
             <div class="dash-content">
                     
-            <table class="table">
+        
+<div class="table-wrapper">
+    <table class="fl-table">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>City Name</th>
-            <th>Action</th>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            <th>Header 3</th>
+            <th>Header 4</th>
+            <th>Header 5</th>
+            <th>Header 6</th>
+            
         </tr>
         </thead>
         <tbody>
-
         <?php
             foreach($students as $student) {
             
@@ -67,7 +69,9 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
         }
         
         ?>
-        </tbody>
+        <tbody>
+    </table>
+</div>
             </div>
     </section>
     <script src="script.js"></script>
