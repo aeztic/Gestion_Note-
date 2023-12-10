@@ -1,23 +1,23 @@
 <?php 
 class Etudiant {
     private $id;
-    private $firstName;
-    private $lastName;
+    private $firstname;
+    private $lastname;
     private $email;
     private $password;
     private $phoneNumber;
     private $regDate;
 
-    public function __construct($firstname, $lastname, $email, $password, $phoneNumber) {
-        $this->firstName = $firstname;
-        $this->lastName = $lastname;
+            public function __construct($firstname, $lastname, $email, $password, $phoneNumber) {
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
         $this->phoneNumber = $phoneNumber;
     }
 
         public function insertEtudiant($tableName ,$conn){
-            $sql = "INSERT INTO $tableName (firstname, lastname, email , password,phoneNumber) VALUES ('$this->firstName', $this->lastName', '$this->email' , '$this->password' , '$this->phoneNumber')";
+            $sql = "INSERT INTO $tableName (firstname, lastname, email , password, phoneNumber) VALUES ('$this->firstname', '$this->lastname', '$this->email' , '$this->password' , '$this->phoneNumber')";
             mysqli_query($conn, $sql);
     }
     //selections des etudiants

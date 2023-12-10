@@ -52,21 +52,24 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
         </thead>
         <tbody>
         <?php
-            foreach($students as $student) {
+            if($students > 0){
+                foreach($students as $student) {
             
 
-            echo " <tr>
-            <td>$student[id]</td>
-            <td>$student[firstname]</td>
-            <td>$student[lastname]</td>
-            <td>$student[email]</td>
-            <td>$student[phoneNumber]</td>
-            <td>
-            <a class ='btn btn-success btn-sm' href='update.php?id=$student[id]'>edit</a>
-            <a class ='btn btn-danger btn-sm' href='delete.php?id=$student[id]'>delete</a>
-            </td>
-        </tr>";
-        }
+                    echo " <tr>
+                    <td>$student[id]</td>
+                    <td>$student[firstname]</td>
+                    <td>$student[lastname]</td>
+                    <td>$student[email]</td>
+                    <td>$student[phoneNumber]</td>
+                    <td>
+                    <a class ='btn btn-success btn-sm' href='update.php?id=$student[id]'>edit</a>
+                    <a class ='btn btn-danger btn-sm' href='delete.php?id=$student[id]'>delete</a>
+                    </td>
+                </tr>";
+                }
+                
+            }
         
         ?>
         <tbody>

@@ -14,7 +14,7 @@
     --black-light-color: #707070;
     --border-color: #e6e5e5;
     --toggle-color: #DDD;
-    --box1-color: #4DA3FF;
+    --box1-color: #ffffff;
     --box2-color: #FFE6AC;
     --box3-color: #E7D1FC;
     --title-icon-color: #fff;
@@ -310,7 +310,7 @@ nav.close ~ .dashboard .top{
     border-radius: 12px;
     width: calc(100% / 3 - 15px);
     padding: 15px 20px;
-    background-color: var(--box1-color);
+    background-color: peru;
     transition: var(--tran-05);
 }
 .boxes .box i{

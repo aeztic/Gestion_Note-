@@ -1,45 +1,75 @@
+<?php 
+include("configForm.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="form.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Registration Form in HTML CSS</title>
+    
+    <link rel="stylesheet" href="form.css" />
 </head>
+
 <body>
-<div class="container-fluid px-1 py-5 mx-auto">
-    <div class="row d-flex justify-content-center">
-        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-            <div class="card">
-                <h5 class="text-center mb-4">Powering world-class companies</h5>
-                <form class="form-card" onsubmit="event.preventDefault()">
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">First name<span class="text-danger"> *</span></label> <input type="text" id="fname" name="fname" placeholder="Enter your first name" onblur="validate(1)"> </div>
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Last name<span class="text-danger"> *</span></label> <input type="text" id="lname" name="lname" placeholder="Enter your last name" onblur="validate(2)"> </div>
-                    </div>
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Business email<span class="text-danger"> *</span></label> <input type="text" id="email" name="email" placeholder="" onblur="validate(3)"> </div>
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Phone number<span class="text-danger"> *</span></label> <input type="text" id="mob" name="mob" placeholder="" onblur="validate(4)"> </div>
-                    </div>
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Job title<span class="text-danger"> *</span></label> <input type="text" id="job" name="job" placeholder="" onblur="validate(5)"> </div>
-                    </div>
-                    
-                    <div class="row justify-content-between text-left">
-                        <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3">What would you be using Flinks for?<span class="text-danger"> *</span></label> <input type="text" id="ans" name="ans" placeholder="" onblur="validate(6)"> </div>
-                    </div>
-                    <div class="row justify-content-end">
-                        <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">Request a demo</button> </div>
-                    </div>
-                </form>
+    <section class="container_form">
+        <header>Add student</header>
+        <form action="" class="form" method="post">
+            <div class="input-box">
+                <label>First Name</label>
+                <input name="firstname" type="text" placeholder="Enter First name"   value="<?php if(isset($firstName)) echo $firstName; ?>"/>
             </div>
-        </div>
-    </div>
-</div>
-<script src="form.js"></script>
+            <span style="color: red;"><?php echo $firstNameErrorMsg; ?></span>
+            <div class="input-box">
+                <label>Last Name</label>
+                <input name="lastname" type="text" placeholder="Enter Last name"  value="<?php if(isset($lastName)) echo $lastName; ?>"/>
+            </div>
+            <span style="color: red;"><?php echo $lastNameErrorMsg; ?></span>
+            <div class="input-box">
+                <label>Email Address</label>
+                <input name="email" type="email" placeholder="Enter email address"  value="<?php if(isset($email)) echo $email; ?>" />
+            </div>
+            <span style="color: red;"><?php echo $emailErrorMsg; ?></span>
+            <div class="column">
+                <div class="input-box">
+                    <label>Phone Number</label>
+                    <input name="phone" type="number" placeholder="Enter phone number"  value="<?php if(isset($phoneNum)) echo $phoneNum; ?>"/>
+                </div>
+                <!-- <div class="input-box">
+                    <label>Birth Date</label>
+                    <input type="date" placeholder="Enter birth date"  />
+                </div> -->
+            </div>
+            <span style="color: red;"><?php echo $phoneErrorMsg; ?></span>
+            <!-- <div class="gender-box">
+                <h3>Gender</h3>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input type="radio" id="check-male" name="gender" checked />
+                        <label for="check-male">male</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" id="check-female" name="gender" />
+                        <label for="check-female">Female</label>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="input-box address">
+                <label>Address</label>
+                <input type="text" placeholder="Enter street address"  />
+                <input type="text" placeholder="Enter street address line 2"  />
+                <div class="column">
+                    <input type="text" placeholder="Enter your region"  />
+                    <input type="number" placeholder="Enter postal code"  />
+                </div>
+            </div> -->
+            <button name="submit">Submit</button>
+        </form>
+    </section>
 </body>
+
 </html>
