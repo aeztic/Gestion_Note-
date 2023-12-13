@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>Admin Dashboard NGN school</title>
+    <title>Admin Dashboard school</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 <img src="1.png" alt="">
             </div>
 
-            <span class="logo_name">NGN school</span>
+            <span class="logo_name"> school</span>
         </div>
 
         <div class="menu-items">

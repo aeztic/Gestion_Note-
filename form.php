@@ -67,6 +67,15 @@ include("configForm.php");
                     <input type="number" placeholder="Enter postal code"  />
                 </div>
             </div> -->
+            <!-- <div class="select-box">
+            <select>
+                <option hidden>Country</option>
+                <option>America</option>
+                <option>Japan</option>
+                <option>India</option>
+                <option>Nepal</option>
+            </select>
+            </div> -->
             <button name="submit">Submit</button>
         </form>
     </section>
