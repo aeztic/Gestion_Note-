@@ -85,5 +85,30 @@ class Etudiant {
         
             }
 
+            public static function selectEtudiantNotes($id, $conn) {
+                
+            
+                $sql =  "
+                    SELECT Matiere.MatName, Note.note
+                    FROM Note
+                    INNER JOIN Matiere ON Note.idMatiere = Matiere.idMat
+                    WHERE Note.idEtudiant = '$id'
+                ";
+            
+                $result = mysqli_query($conn, $sql);
+            
+                if (mysqli_num_rows($result) > 0) {
+                    // output data of each row
+                    $data = [];
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $data[] = $row;
+                    }
+                    return $data;
+                }
+                
+                return [];
+            }
+            
+
 }
 ?>

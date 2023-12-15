@@ -3,6 +3,7 @@ $firstNameErrorMsg = "";
 $lastNameErrorMsg = "";
 $emailErrorMsg = "";
 $phoneErrorMsg = "";
+$GrpErrorMsg = "";
 // $firstNameErrorMsg = "";
 include("etudiant.php");
 include("connection.php");
@@ -30,7 +31,11 @@ if(isset($_POST["submit"])){
         $phoneErrorMsg = "field must be filled out";
     }
 
-    if ($firstNameErrorMsg == "" && $lastNameErrorMsg === "" && $emailErrorMsg === "" && $phoneErrorMsg === "") {
+    if($idGrp === ""){
+        $GrpErrorMsg = "You must choose an option";
+    }
+
+    if ($firstNameErrorMsg == "" && $lastNameErrorMsg === "" && $emailErrorMsg === "" && $phoneErrorMsg === ""  && $GrpErrorMsg === "") {
         $etudiant = new Etudiant($firstName , $lastName ,$email , "test", $phoneNum ,$idGrp  );
         $etudiant->insertEtudiant("Etudiant",$connection->conn);
 

@@ -85,6 +85,7 @@ include("configForm.php");
                         }
                     ?>
                 </select>
+                <span style="color: red;"><?php echo $GrpErrorMsg; ?></span>
             </div>
             <button name="submit">Submit</button>
         </form>

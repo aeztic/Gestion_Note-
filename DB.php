@@ -12,6 +12,14 @@ GrpName varchar(50) NOT NULL
 )
 ";
 
+$queryMatiere = "
+CREATE TABLE IF NOT EXISTS Matiere (
+    idMat varchar(5) NOT NULL PRIMARY KEY,
+    MatName varchar(50) NOT NULL
+)";
+
+
+
 $queryEtudiant = "
 CREATE TABLE IF NOT EXISTS Etudiant (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -25,6 +33,17 @@ idGrp VARCHAR(5) NOT NULL ,
 FOREIGN KEY (idGrp) REFERENCES Groupe(idGrp)
 
 )";
+
+$queryNote = "
+CREATE TABLE IF NOT EXISTS Note (
+    idNote INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    idEtudiant INT(6) UNSIGNED NOT NULL,
+    idMatiere VARCHAR(5) NOT NULL,
+    note FLOAT,
+    FOREIGN KEY (idEtudiant) REFERENCES Etudiant(id),
+    FOREIGN KEY (idMatiere) REFERENCES Matiere(idMat)
+)";
+
 
 $queryUsers = "
 CREATE TABLE IF NOT EXISTS Users (
@@ -41,6 +60,8 @@ CREATE TABLE IF NOT EXISTS Users (
 $conn->selectDatabase("project");
 $conn->createTable($queryGroupes);
 $conn->createTable($queryEtudiant);
+$conn->createTable($queryMatiere);
+$conn->createTable($queryNote);
 $conn->createTable($queryUsers);
 
 ?>

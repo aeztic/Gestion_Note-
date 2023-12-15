@@ -11,6 +11,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +20,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>Admin Dashboard school</title>
 </head>
+
 <body>
     <?php 
     include("nav.php");
@@ -32,7 +34,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-        
+
             <img src="2.png" alt="">
         </div>
 
@@ -68,20 +70,21 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                     <span class="text">Recent Activity</span>
                 </div>
                 <div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>first name</th>
-            <th>last name</th>
-            <th>email</th>
-            <th>phoneNumber</th>
-            <th>Groupe</th>
-            
-        </tr>
-        </thead>
-        <tbody>
-        <?php
+                    <table class="fl-table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>first name</th>
+                                <th>last name</th>
+                                <th>email</th>
+                                <th>phoneNumber</th>
+                                <th>Groupe</th>
+                                <th>Preview</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
             if($students > 0){
                 foreach($students as $student) {
             
@@ -102,15 +105,16 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                 
             }
         ?>
-        <tbody>
-    </table>
-</div>
-                
+                        <tbody>
+                    </table>
                 </div>
+
             </div>
+        </div>
         </div>
     </section>
 
     <script src="script.js"></script>
 </body>
+
 </html>
