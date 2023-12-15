@@ -10,6 +10,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,40 +19,41 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>document</title>
 </head>
+
 <body>
     <?php 
     include("nav.php");
     ?>
     <section class="dashboard">
-    <div class="top">
+        <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
             <div class="search-box">
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-        
+
             <img src="2.png" alt="">
-            </div>
-                
-            <div class="dash-content">
-                    
-        
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>Header 1</th>
-            <th>Header 2</th>
-            <th>Header 3</th>
-            <th>Header 4</th>
-            <th>Header 5</th>
-            <th>Header 6</th>
-            
-        </tr>
-        </thead>
-        <tbody>
-        <?php
+        </div>
+
+        <div class="dash-content">
+
+
+            <div class="table-wrapper">
+                <table class="fl-table">
+                    <thead>
+                        <tr>
+                            <th>Header 1</th>
+                            <th>Header 2</th>
+                            <th>Header 3</th>
+                            <th>Header 4</th>
+                            <th>Header 5</th>
+                            <th>Header 6</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
             if($students > 0){
                 foreach($students as $student) {
             
@@ -62,6 +64,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                     <td>$student[lastname]</td>
                     <td>$student[email]</td>
                     <td>$student[phoneNumber]</td>
+                    <td>$student[idGrp]</td>
                     <td>
                     <a class ='btn btn-success btn-sm' href='update.php?id=$student[id]'>edit</a>
                     <a class ='btn btn-danger btn-sm' href='delete.php?id=$student[id]'>delete</a>
@@ -72,11 +75,12 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
             }
         
         ?>
-        <tbody>
-    </table>
-</div>
+                    <tbody>
+                </table>
             </div>
+        </div>
     </section>
     <script src="script.js"></script>
 </body>
+
 </html>

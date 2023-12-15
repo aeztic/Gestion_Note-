@@ -11,7 +11,7 @@ include("configForm.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Registration Form in HTML CSS</title>
-    
+
     <link rel="stylesheet" href="form.css" />
 </head>
 
@@ -21,23 +21,28 @@ include("configForm.php");
         <form action="" class="form" method="post">
             <div class="input-box">
                 <label>First Name</label>
-                <input name="firstname" type="text" placeholder="Enter First name"   value="<?php if(isset($firstName)) echo $firstName; ?>"/>
+                <input name="firstname" type="text" placeholder="Enter First name"
+                    value="<?php if(isset($firstName)) echo $firstName; ?>" />
             </div>
             <span style="color: red;"><?php echo $firstNameErrorMsg; ?></span>
             <div class="input-box">
                 <label>Last Name</label>
-                <input name="lastname" type="text" placeholder="Enter Last name"  value="<?php if(isset($lastName)) echo $lastName; ?>"/>
+                <input name="lastname" type="text" placeholder="Enter Last name"
+                    value="<?php if(isset($lastName)) echo $lastName; ?>" />
             </div>
             <span style="color: red;"><?php echo $lastNameErrorMsg; ?></span>
             <div class="input-box">
                 <label>Email Address</label>
-                <input name="email" type="email" placeholder="Enter email address"  value="<?php if(isset($email)) echo $email; ?>" />
+                <input name="email" type="email" placeholder="Enter email address"
+                    value="<?php if(isset($email)) echo $email; ?>" />
             </div>
             <span style="color: red;"><?php echo $emailErrorMsg; ?></span>
             <div class="column">
+
                 <div class="input-box">
                     <label>Phone Number</label>
-                    <input name="phone" type="number" placeholder="Enter phone number"  value="<?php if(isset($phoneNum)) echo $phoneNum; ?>"/>
+                    <input name="phone" type="number" placeholder="Enter phone number"
+                        value="<?php if(isset($phoneNum)) echo $phoneNum; ?>" />
                 </div>
                 <!-- <div class="input-box">
                     <label>Birth Date</label>
@@ -67,15 +72,20 @@ include("configForm.php");
                     <input type="number" placeholder="Enter postal code"  />
                 </div>
             </div> -->
-            <!-- <div class="select-box">
-            <select>
-                <option hidden>Country</option>
-                <option>America</option>
-                <option>Japan</option>
-                <option>India</option>
-                <option>Nepal</option>
-            </select>
-            </div> -->
+
+            <div class="select-box">
+                <select name="groupes">
+                    <option hidden>Groupe</option>
+                    <?php
+                        include('groupe.php');
+                        $groupes=Groupe::selectAllgroupes('Groupe',$connection->conn);
+                        foreach($groupes as $groupe){
+                                echo "<option value='$groupe[idGrp]' >$groupe[GrpName]</option>";
+
+                        }
+                    ?>
+                </select>
+            </div>
             <button name="submit">Submit</button>
         </form>
     </section>

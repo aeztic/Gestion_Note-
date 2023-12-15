@@ -1,29 +1,31 @@
 <?php 
 class Etudiant {
-    private $id;
-    private $firstname;
-    private $lastname;
-    private $email;
+    public $id;
+    public $firstname;
+    public $lastname;
+    public $email;
     private $password;
-    private $phoneNumber;
-    private $regDate;
+    public $phoneNumber;
+    public $regDate;
+    public $idGrp;
 
-            public function __construct($firstname, $lastname, $email, $password, $phoneNumber) {
+            public function __construct($firstname, $lastname, $email, $password, $phoneNumber , $idGrp) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
         $this->phoneNumber = $phoneNumber;
+        $this->idGrp = $idGrp;
     }
 
         public function insertEtudiant($tableName ,$conn){
-            $sql = "INSERT INTO $tableName (firstname, lastname, email , password, phoneNumber) VALUES ('$this->firstname', '$this->lastname', '$this->email' , '$this->password' , '$this->phoneNumber')";
+            $sql = "INSERT INTO $tableName (firstname, lastname, email , password, phoneNumber , idGrp ) VALUES ('$this->firstname', '$this->lastname', '$this->email' , '$this->password' , '$this->phoneNumber' , '$this->idGrp')";
             mysqli_query($conn, $sql);
     }
     //selections des etudiants
         public static function  selectAllEtudiants($tableName,$conn){
 
-        $sql = "SELECT id, firstname, lastname,email ,phoneNumber    FROM $tableName ";
+        $sql = "SELECT id, firstname, lastname,email ,phoneNumber , idGrp   FROM $tableName ";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) > 0) {
                 $data=[];
@@ -38,7 +40,7 @@ class Etudiant {
 
         static function selectEtudiantById($tableName,$conn,$id){
 
-            $sql = "SELECT firstname, lastname,email ,phoneNumber FROM $tableName  WHERE id='$id'";
+            $sql = "SELECT firstname, lastname,email ,phoneNumber ,  idGrp FROM $tableName  WHERE id='$id'";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
             // output data of each row
@@ -50,7 +52,7 @@ class Etudiant {
 
         static function updateEtudiant($etudiant,$tableName,$conn,$id){
             
-            $sql = "UPDATE $tableName SET lastname='$etudiant->lastname',firstname='$etudiant->firstname',email='$etudiant->email',phoneNumber= '$etudiant->phoneNumber' WHERE id='$id'";
+            $sql = "UPDATE $tableName SET lastname='$etudiant->lastname',firstname='$etudiant->firstname',email='$etudiant->email',phoneNumber= '$etudiant->phoneNumber'  , idGrp= '$etudiant->idGrp' WHERE id='$id'";
                 if (mysqli_query($conn, $sql)) {
                    //header("Location:read.php");
                 }
@@ -67,6 +69,21 @@ class Etudiant {
         }
             }
 
+            public static function selectEtudiantByGrpId($tableName,$conn,$idGrp){
+    
+                $sql = "SELECT id, firstname, lastname, email , phoneNumber , idGrp FROM $tableName  WHERE idGrp='$idGrp'";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                // output data of each row
+                $data=[];
+                while($row = mysqli_fetch_assoc($result)) {
+                
+                    $data[]=$row;
+                }
+                return $data;
+            }
+        
+            }
 
 }
 ?>

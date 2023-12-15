@@ -71,12 +71,12 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Header 1</th>
-            <th>Header 2</th>
-            <th>Header 3</th>
-            <th>Header 4</th>
-            <th>Header 5</th>
-            <th>Header 6</th>
+            <th>Id</th>
+            <th>first name</th>
+            <th>last name</th>
+            <th>email</th>
+            <th>phoneNumber</th>
+            <th>Groupe</th>
             
         </tr>
         </thead>
@@ -92,6 +92,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                     <td>$student[lastname]</td>
                     <td>$student[email]</td>
                     <td>$student[phoneNumber]</td>
+                    <td>$student[idGrp]</td>
                     <td>
                     <a class ='btn btn-success btn-sm' href='update.php?id=$student[id]'>edit</a>
                     <a class ='btn btn-danger btn-sm' href='delete.php?id=$student[id]'>delete</a>

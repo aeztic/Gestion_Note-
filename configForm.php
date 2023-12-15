@@ -15,6 +15,7 @@ if(isset($_POST["submit"])){
     $lastName = $_POST["lastname"];
     $email = $_POST["email"];
     $phoneNum = $_POST["phone"];
+    $idGrp = $_POST["groupes"];
 
     if($firstName === ""){
         $firstNameErrorMsg = "field must be filled out";
@@ -30,7 +31,7 @@ if(isset($_POST["submit"])){
     }
 
     if ($firstNameErrorMsg == "" && $lastNameErrorMsg === "" && $emailErrorMsg === "" && $phoneErrorMsg === "") {
-        $etudiant = new Etudiant($firstName , $lastName ,$email , "test", $phoneNum);
+        $etudiant = new Etudiant($firstName , $lastName ,$email , "test", $phoneNum ,$idGrp  );
         $etudiant->insertEtudiant("Etudiant",$connection->conn);
 
         $firstName = "";
