@@ -30,7 +30,7 @@
                 <li>
                     <a href="dashGrp.php">
                         <i class="uil uil-graduation-cap"></i>
-                        <span class="link-name">students</span>
+                        <span class="link-name">Groupes</span>
                     </a>
                 </li>
                 <li><a href="addStudents.php">

@@ -423,6 +423,11 @@ h2 {
   background: #f8f8f8;
 }
 /* cards */
+.buttonCard {
+  background-color: transparent;
+  border: transparent;
+}
+
 .card {
   width: 350px;
   height: 250px;

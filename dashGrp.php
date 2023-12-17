@@ -1,10 +1,12 @@
 <?php 
+session_start();
 include("connection.php");
 $connection = new Connection();
 $connection->selectDatabase('project'); 
 include('etudiant.php');
+include('groupe.php');
 $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
-
+$groupes = Groupe::selectAllgroupes('groupe' , $connection->conn);
 ?>
 
 
@@ -34,38 +36,40 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
         </div>
 
         <div class="dash-content">
+            <br>
 
-            <div class="card">
-                <div class="card-img"></div>
-                <div class="card-info">
-                    <div class="card-text">
-                        <p class="text-title">Groupe 1</p>
+            <?php 
+                foreach ($groupes as $groupe){
+                    echo " 
+                    <a href='test.php?id=$groupe[idGrp]'>
+                    <div class='card'>
+                        <div class='card-img'></div>
+                        <div class='card-info'>
+                            <div class='card-text'>
+                                <p class='text-title'>$groupe[GrpName]</p>
+                            </div>
+                            <div class='card-icon'>
+                                
+                                    
+                                    <svg class='icon' viewBox='0 0 28 25'>
+                                        <path d='M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z'>
+                                        </path>
+                                    </svg>
+                                    
+                                
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-icon">
-                        <svg class="icon" viewBox="0 0 28 25">
-                            <path
-                                d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+                </a> 
+                    ";
+                
+                if(isset($_POST['submit'])){
+                    $_SESSION['idGrp'] = $_POST['submit'];
+                }
+                }
+                ?>
 
-            <div class="card">
-                <div class="card-img"></div>
-                <div class="card-info">
-                    <div class="card-text">
-                        <p class="text-title">Groupe 2</p>
-                    </div>
-                    <div class="card-icon">
-                        <svg class="icon" viewBox="0 0 28 25">
-                            <path
-                                d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
     <script src="script.js"></script>
