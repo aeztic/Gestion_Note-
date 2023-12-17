@@ -63,9 +63,7 @@ $groupes = Groupe::selectAllgroupes('groupe' , $connection->conn);
                 </a> 
                     ";
                 
-                if(isset($_POST['submit'])){
-                    $_SESSION['idGrp'] = $_POST['submit'];
-                }
+                
                 }
                 ?>
 
