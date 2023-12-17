@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="students.php">
+                    <a href="dashGrp.php">
                         <i class="uil uil-graduation-cap"></i>
                         <span class="link-name">students</span>
                     </a>
