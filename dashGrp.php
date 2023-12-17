@@ -1,9 +1,9 @@
-<?php 
+<?php
 include("connection.php");
 $connection = new Connection();
-$connection->selectDatabase('project'); 
+$connection->selectDatabase('project');
 include('etudiant.php');
-$students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
+$students = Etudiant::selectAllEtudiants('Etudiant', $connection->conn);
 
 ?>
 
@@ -16,12 +16,13 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashGrp.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>document</title>
 </head>
 
 <body>
-    <?php 
+    <?php
     include("nav.php");
     ?>
     <section class="dashboard">
@@ -33,7 +34,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
             <img src="2.png" alt="">
         </div>
 
-        <div class="dash-content">
+        <div class="dash-content1">
 
             <div class="card">
                 <div class="card-img"></div>
@@ -43,8 +44,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                     </div>
                     <div class="card-icon">
                         <svg class="icon" viewBox="0 0 28 25">
-                            <path
-                                d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
+                            <path d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
                             </path>
                         </svg>
                     </div>
@@ -59,8 +59,68 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                     </div>
                     <div class="card-icon">
                         <svg class="icon" viewBox="0 0 28 25">
-                            <path
-                                d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
+                            <path d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"></div>
+                <div class="card-info">
+                    <div class="card-text">
+                        <p class="text-title">Groupe 3</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 28 25">
+                            <path d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="dash-content2">
+            <div class="card">
+                <div class="card-img"></div>
+                <div class="card-info">
+                    <div class="card-text">
+                        <p class="text-title">Groupe 4</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 28 25">
+                            <path d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img"></div>
+                <div class="card-info">
+                    <div class="card-text">
+                        <p class="text-title">Groupe 5</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 28 25">
+                            <path d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"></div>
+                <div class="card-info">
+                    <div class="card-text">
+                        <p class="text-title">Groupe 6</p>
+                    </div>
+                    <div class="card-icon">
+                        <svg class="icon" viewBox="0 0 28 25">
+                            <path d="M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z">
                             </path>
                         </svg>
                     </div>
