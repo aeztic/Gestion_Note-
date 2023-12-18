@@ -42,7 +42,7 @@ $groupes = Groupe::selectAllgroupes('groupe' , $connection->conn);
             <?php 
                 foreach ($groupes as $groupe){
                     echo " 
-                    <a href='test.php?id=$groupe[idGrp]'>
+                    <a href='StudentsList.php?id=$groupe[idGrp]'>
                     <div class='card'>
                         <div class='card-img'></div>
                         <div class='card-info'>
