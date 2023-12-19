@@ -32,16 +32,16 @@
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="addStudents.php">
+                <a href="dashGrp.php">
                     <i class='bx bx-user'></i>
-                    <span class="links_name">add student</span>
+                    <span class="links_name">Groupes</span>
                 </a>
                 <span class="tooltip">User</span>
             </li>
             <li>
-                <a href="#">
+                <a href="addStudents.php">
                     <i class='bx bx-chat'></i>
-                    <span class="links_name">Messages</span>
+                    <span class="links_name">Add students</span>
                 </a>
                 <span class="tooltip">Messages</span>
             </li>
@@ -88,10 +88,14 @@
                         <div class="job">Web designer</div>
                     </div>
                 </div>
-                <i class='bx bx-log-out' id="log_out"></i>
+                <a href="login.php"><i class='bx bx-log-out' id="log_out"></i></a>
             </li>
         </ul>
     </div>
+
+
+
+
 
     <script>
     let sidebar = document.querySelector(".sidebar");

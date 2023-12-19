@@ -17,29 +17,21 @@ $groupes = Groupe::selectAllgroupes('groupe' , $connection->conn);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="navStyle.css">
     <link rel="stylesheet" href="dashGrp.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>document</title>
 </head>
 
-<body>
-    <?php 
-    include("nav.php");
+
+
+<?php 
+    include("newNav.php");
     ?>
-    <section class="dashboard">
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
 
-
-
-            <img src="2.png" alt="">
-        </div>
-
-        <div class="dash-content1">
-            <br>
-
-            <?php 
+<section class="home-section">
+    <div class="text"></div>
+    <?php 
                 foreach ($groupes as $groupe){
                     echo " 
                     <a href='StudentsList.php?id=$groupe[idGrp]'>
@@ -68,14 +60,10 @@ $groupes = Groupe::selectAllgroupes('groupe' , $connection->conn);
                 }
                 ?>
 
+</section>
 
-        </div>
-    </section>
 
-    <body>
-
-    </body>
-    <script src="script.js"></script>
+</body>
 </body>
 
 </html>
