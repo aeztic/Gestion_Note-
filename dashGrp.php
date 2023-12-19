@@ -71,6 +71,10 @@ $groupes = Groupe::selectAllgroupes('groupe' , $connection->conn);
 
         </div>
     </section>
+
+    <body>
+
+    </body>
     <script src="script.js"></script>
 </body>
 

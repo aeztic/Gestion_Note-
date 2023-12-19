@@ -63,7 +63,7 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover {
   background: #3a3b3c;
 }
 
-nav {
+/* nav {
   color: white;
   position: fixed;
   top: 0;
@@ -110,7 +110,7 @@ nav .menu-items {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
+} */
 .menu-items li {
   list-style: none;
 }
@@ -121,7 +121,7 @@ nav .menu-items {
   text-decoration: none;
   position: relative;
 }
-.nav-links li a:hover:before {
+/* .nav-links li a:hover:before {
   content: "";
   position: absolute;
   left: -7px;
@@ -129,7 +129,7 @@ nav .menu-items {
   width: 5px;
   border-radius: 50%;
   background-color: var(--primary-color);
-}
+} */
 body.dark li a:hover:before {
   background-color: var(--text-color);
 }
@@ -148,14 +148,14 @@ body.dark li a:hover:before {
   color: white;
   transition: var(--tran-05);
 }
-nav.close li a .link-name {
+/* nav.close li a .link-name {
   opacity: 0;
   pointer-events: none;
 }
 .nav-links li a:hover i,
 .nav-links li a:hover .link-name {
   color: var(--primary-color);
-}
+} */
 body.dark .nav-links li a:hover i,
 body.dark .nav-links li a:hover .link-name {
   color: var(--text-color);
@@ -212,10 +212,10 @@ body.dark .switch:before {
   padding: 10px 14px;
   transition: var(--tran-05);
 }
-nav.close ~ .dashboard {
+/* nav.close ~ .dashboard {
   left: 73px;
   width: calc(100% - 73px);
-}
+} */
 .dashboard .top {
   position: fixed;
   top: 0;
@@ -229,10 +229,10 @@ nav.close ~ .dashboard {
   transition: var(--tran-05);
   z-index: 10;
 }
-nav.close ~ .dashboard .top {
+/* nav.close ~ .dashboard .top {
   left: 73px;
   width: calc(100% - 73px);
-}
+} */
 .dashboard .top .sidebar-toggle {
   font-size: 26px;
   color: var(--text-color);
@@ -492,7 +492,7 @@ h2 {
   }
 }
 
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
   nav {
     width: 73px;
   }
@@ -534,7 +534,7 @@ h2 {
   .activity .activity-data {
     overflow-x: scroll;
   }
-}
+} */
 
 @media (max-width: 780px) {
   .dash-content .boxes .box {
@@ -547,7 +547,7 @@ h2 {
     width: 100%;
   }
 }
-@media (max-width: 400px) {
+/* @media (max-width: 400px) {
   nav {
     width: 0px;
   }
@@ -586,7 +586,7 @@ h2 {
     left: 0;
     width: 100%;
   }
-}
+} */
 
 .subcategories {
   display: none;
