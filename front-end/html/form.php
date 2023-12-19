@@ -1,5 +1,5 @@
 <?php 
-include("configForm.php");
+include("../../back-end/configues/configForm.php");
 
 ?>
 
@@ -12,7 +12,7 @@ include("configForm.php");
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Registration Form in HTML CSS</title>
 
-    <link rel="stylesheet" href="form.css" />
+    <link rel="stylesheet" href="../css/form.css" />
 </head>
 
 <body>
@@ -77,7 +77,7 @@ include("configForm.php");
                 <select name="groupes">
                     <option hidden>Groupe</option>
                     <?php
-                        include('groupe.php');
+                        include('../../back-end/classes/groupe.php');
                         $groupes=Groupe::selectAllgroupes('Groupe',$connection->conn);
                         foreach($groupes as $groupe){
                                 echo "<option value='$groupe[idGrp]' >$groupe[GrpName]</option>";

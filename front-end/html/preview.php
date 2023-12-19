@@ -1,11 +1,11 @@
 <?php
 
 if($_SERVER['REQUEST_METHOD']=='GET'){
-    include("connection.php");
+    include("../../back-end/classes/connection.php");
     $connection = new Connection();
     $connection->selectDatabase('project'); 
-    include('etudiant.php');
-    include('groupe.php');
+    include('../../back-end/classes/etudiant.php');
+    include('../../back-end/classes/groupe.php');
     $id=$_GET['id'];
     $students = Etudiant::selectEtudiantById("etudiant",$connection->conn,$id);
 
@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="navStyle.css">
+    <link rel="stylesheet" href="../css/navStyle.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>document</title>
 </head>

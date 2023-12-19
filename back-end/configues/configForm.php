@@ -5,8 +5,8 @@ $emailErrorMsg = "";
 $phoneErrorMsg = "";
 $GrpErrorMsg = "";
 // $firstNameErrorMsg = "";
-include("etudiant.php");
-include("connection.php");
+include("../../back-end/classes/etudiant.php");
+include("../../back-end/classes/connection.php");
 $connection = new Connection();
 $connection->selectDatabase('project'); 
 

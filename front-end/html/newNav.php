@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Responsive Sidebar Menu | CodingLab </title>
-    <link rel="stylesheet" href="navStyle.css">
+    <link rel="stylesheet" href="../css/navStyle.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
     <div class="sidebar">
         <div class="logo-details">
             <i class='bx bxl-c-plus-plus icon'></i>
-            <div class="logo_name">CodingLab</div>
+            <div class="logo_name">RG school</div>
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav-list">
@@ -82,7 +82,7 @@
             </li>
             <li class="profile">
                 <div class="profile-details">
-                    <img src="profile.jpg" alt="profileImg">
+                    <img src="../../images/2.png" alt="profileImg">
                     <div class="name_job">
                         <div class="name">Prem Shahi</div>
                         <div class="job">Web designer</div>

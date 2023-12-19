@@ -1,6 +1,6 @@
 <?php
-include("connection.php");
-include("user.php");
+include("../../back-end/classes/connection.php");
+include("../../back-end/classes/user.php");
 $connection = new Connection();
 $connection->selectDatabase("project");
 

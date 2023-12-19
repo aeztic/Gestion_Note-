@@ -1,18 +1,19 @@
 <?php 
 session_start();
 session_destroy();
-include('configLogin.php');
+include('../../back-end/configues/configLogin.php');
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="login.css">
-    <title>Login</title> 
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Login</title>
 </head>
 
 <body>
@@ -23,12 +24,14 @@ include('configLogin.php');
 
                 <form method="post" id="loginForm" action="">
                     <div class="input-field">
-                        <input name="email" id="loginEmail" type="text" placeholder="Enter your email " value="<?php if (isset($emailValue)) echo $emailValue; ?>">
+                        <input name="email" id="loginEmail" type="text" placeholder="Enter your email "
+                            value="<?php if (isset($emailValue)) echo $emailValue; ?>">
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <span style="color:red;"><?php if(isset($_POST['submit'])) echo $emailErrorMsg; ?></span>
                     <div class="input-field">
-                        <input name="password" id="loginPassword" type="password" class="password" placeholder="Enter your password">
+                        <input name="password" id="loginPassword" type="password" class="password"
+                            placeholder="Enter your password">
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -48,13 +51,13 @@ include('configLogin.php');
 
         </div>
     </div>
-</div>
-        
+    </div>
 
-		
-		<script src="login.js"></script>
 
-    
+
+    <script src="../js/login.js"></script>
+
+
 </body>
 
 </html>

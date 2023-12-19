@@ -5,8 +5,8 @@ $passwordErrorMsg ="";
 $cpasswordErrorMsg= "";
 $pattern = '/^(?=.*[A-Za-z0-9])(?=.*[^A-Za-z0-9]).{8,}$/';
 
-include("user.php");
-include("connection.php");
+include("../../back-end/classes/user.php");
+include("../../back-end/classes/connection.php");
 $connection = new Connection();
 $connection->selectDatabase('project'); 
 
@@ -41,7 +41,7 @@ if(isset($_POST["submit"])){
 
 
 
-        header("Location: login.php");
+        header("Location: ../../front-end/html/login.php");
         //exit();
     }
 }

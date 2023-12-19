@@ -68,7 +68,7 @@
     column-gap: 5px;
 }
 .gender input {
-    accent-color: #08D9D6;
+    accent-color: #161A30;
 }
 .form :where(.gender input, .gender label) {
     cursor: pointer;
@@ -97,10 +97,10 @@
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
-    background: #08D9D6;
+    background: #161A30;
 }
 .form button:hover {
-    background: #08D9D6;
+    background: #161A30;
 }
 /*Responsive*/
 @media screen and (max-width: 500px) {
