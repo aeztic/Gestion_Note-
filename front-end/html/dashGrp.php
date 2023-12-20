@@ -30,11 +30,12 @@ $groupes = Groupe::selectAllgroupes('groupe' , $connection->conn);
     ?>
 
 <section class="home-section">
-    <div class="text"></div>
-    <?php 
-                foreach ($groupes as $groupe){
-                    echo " 
-                    <a href='StudentsList.php?id=$groupe[idGrp]'>
+    <div class="dash-content1">
+        <?php 
+    $i = 0;
+    foreach ($groupes as $groupe){
+        if ($i < 3) {
+            echo "<a href='StudentsList.php?id=$groupe[idGrp]'>
                     <div class='card'>
                         <div class='card-img'></div>
                         <div class='card-info'>
@@ -42,23 +43,50 @@ $groupes = Groupe::selectAllgroupes('groupe' , $connection->conn);
                                 <p class='text-title'>$groupe[GrpName]</p>
                             </div>
                             <div class='card-icon'>
-                                
-                                    
+                                <svg class='icon' viewBox='0 0 28 25'>
+                                    <path d='M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z'>
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>";
+            $i++;
+        }
+    }
+    ?>
+    </div>
+
+    <div class="dash-content2">
+        <?php 
+        // Reset $i after the first three iterations
+        $i = 0;
+
+        foreach ($groupes as $groupe){
+            if ($i >= 3 && $i < 6) {
+                echo "<a href='StudentsList.php?id=$groupe[idGrp]'>
+                        <div class='card'>
+                            <div class='card-img'></div>
+                            <div class='card-info'>
+                                <div class='card-text'>
+                                    <p class='text-title'>$groupe[GrpName]</p>
+                                </div>
+                                <div class='card-icon'>
                                     <svg class='icon' viewBox='0 0 28 25'>
                                         <path d='M13.145 2.13l1.94-1.867 12.178 12-12.178 12-1.94-1.867 8.931-8.8H.737V10.93h21.339z'>
                                         </path>
                                     </svg>
-                                    
-                                
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a> 
-                    ";
+                    </a>";
                 
-                
-                }
-                ?>
+            }
+            $i++;
+        }
+    ?>
+    </div>
+
 
 </section>
 

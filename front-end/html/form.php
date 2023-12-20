@@ -16,41 +16,42 @@ include("../../back-end/configues/configForm.php");
 </head>
 
 <body>
-    <section class="container_form">
-        <header>Add student</header>
-        <form action="" class="form" method="post">
-            <div class="input-box">
-                <label>First Name</label>
-                <input name="firstname" type="text" placeholder="Enter First name"
-                    value="<?php if(isset($firstName)) echo $firstName; ?>" />
-            </div>
-            <span style="color: red;"><?php echo $firstNameErrorMsg; ?></span>
-            <div class="input-box">
-                <label>Last Name</label>
-                <input name="lastname" type="text" placeholder="Enter Last name"
-                    value="<?php if(isset($lastName)) echo $lastName; ?>" />
-            </div>
-            <span style="color: red;"><?php echo $lastNameErrorMsg; ?></span>
-            <div class="input-box">
-                <label>Email Address</label>
-                <input name="email" type="email" placeholder="Enter email address"
-                    value="<?php if(isset($email)) echo $email; ?>" />
-            </div>
-            <span style="color: red;"><?php echo $emailErrorMsg; ?></span>
-            <div class="column">
-
+    <section class="from_container">
+        <section class="container_form">
+            <header>Add student</header>
+            <form action="" class="form" method="post">
                 <div class="input-box">
-                    <label>Phone Number</label>
-                    <input name="phone" type="number" placeholder="Enter phone number"
-                        value="<?php if(isset($phoneNum)) echo $phoneNum; ?>" />
+                    <label>First Name</label>
+                    <input name="firstname" type="text" placeholder="Enter First name"
+                        value="<?php if(isset($firstName)) echo $firstName; ?>" />
                 </div>
-                <!-- <div class="input-box">
+                <span style="color: red;"><?php echo $firstNameErrorMsg; ?></span>
+                <div class="input-box">
+                    <label>Last Name</label>
+                    <input name="lastname" type="text" placeholder="Enter Last name"
+                        value="<?php if(isset($lastName)) echo $lastName; ?>" />
+                </div>
+                <span style="color: red;"><?php echo $lastNameErrorMsg; ?></span>
+                <div class="input-box">
+                    <label>Email Address</label>
+                    <input name="email" type="email" placeholder="Enter email address"
+                        value="<?php if(isset($email)) echo $email; ?>" />
+                </div>
+                <span style="color: red;"><?php echo $emailErrorMsg; ?></span>
+                <div class="column">
+
+                    <div class="input-box">
+                        <label>Phone Number</label>
+                        <input name="phone" type="number" placeholder="Enter phone number"
+                            value="<?php if(isset($phoneNum)) echo $phoneNum; ?>" />
+                    </div>
+                    <!-- <div class="input-box">
                     <label>Birth Date</label>
                     <input type="date" placeholder="Enter birth date"  />
                 </div> -->
-            </div>
-            <span style="color: red;"><?php echo $phoneErrorMsg; ?></span>
-            <!-- <div class="gender-box">
+                </div>
+                <span style="color: red;"><?php echo $phoneErrorMsg; ?></span>
+                <!-- <div class="gender-box">
                 <h3>Gender</h3>
                 <div class="gender-option">
                     <div class="gender">
@@ -63,7 +64,7 @@ include("../../back-end/configues/configForm.php");
                     </div>
                 </div>
             </div> -->
-            <!-- <div class="input-box address">
+                <!-- <div class="input-box address">
                 <label>Address</label>
                 <input type="text" placeholder="Enter street address"  />
                 <input type="text" placeholder="Enter street address line 2"  />
@@ -73,10 +74,10 @@ include("../../back-end/configues/configForm.php");
                 </div>
             </div> -->
 
-            <div class="select-box">
-                <select name="groupes">
-                    <option hidden>Groupe</option>
-                    <?php
+                <div class="select-box">
+                    <select name="groupes">
+                        <option hidden>Groupe</option>
+                        <?php
                         include('../../back-end/classes/groupe.php');
                         $groupes=Groupe::selectAllgroupes('Groupe',$connection->conn);
                         foreach($groupes as $groupe){
@@ -84,11 +85,12 @@ include("../../back-end/configues/configForm.php");
 
                         }
                     ?>
-                </select>
-                <span style="color: red;"><?php echo $GrpErrorMsg; ?></span>
-            </div>
-            <button name="submit">Submit</button>
-        </form>
+                    </select>
+                    <span style="color: red;"><?php echo $GrpErrorMsg; ?></span>
+                </div>
+                <button name="submit">Submit</button>
+            </form>
+        </section>
     </section>
 </body>
 

@@ -1,23 +1,30 @@
 /* cards */
+body{
+  background-color: #E4E9F7;
+}
 .dash-content1 {
+  justify-content: center;
   display: flex;
   margin-bottom: 50px;
   margin-top: 80px;
+  margin-left: 45px;
 }
 
 .dash-content2 {
+  margin-left: 45px;
   display: flex;
+  justify-content: center;
 }
 
 .card {
-  width: 350px;
-  height: 250px;
+  width: 380px;
+  height: 280px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
   animation: name-of-animation 2s;
-  margin-right: 20px;
+  margin-right: 50px;
   padding-right: 20px;
 }
 
@@ -95,3 +102,4 @@
     opacity: 1;
   }
 }
+
