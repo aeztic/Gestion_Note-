@@ -33,13 +33,12 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>first name</th>
-                        <th>last name</th>
-                        <th>email</th>
-                        <th>phoneNumber</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Groupe</th>
+                        <th>Email</th>
+                        <th>PhoneNumber</th>
                         <th>Preview</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +63,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                                     </path>
                                             </svg>
                                         </a>
+                                        
                                     </td>
                                 </tr>";
                             }

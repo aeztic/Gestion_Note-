@@ -15,7 +15,8 @@ GrpName varchar(50) NOT NULL
 $queryMatiere = "
 CREATE TABLE IF NOT EXISTS Matiere (
     idMat varchar(5) NOT NULL PRIMARY KEY,
-    MatName varchar(50) NOT NULL
+    libelle varchar(50) NOT NULL , 
+    coef float(10) NOT NULL
 )";
 
 
