@@ -85,28 +85,27 @@ class Etudiant {
         
             }
 
-            public static function selectEtudiantNotes($id, $conn) {
-                
-            
-                $sql =  "
-                    SELECT Matiere.MatName, Note.note
+            public static function getNotesForEtudiant($id , $conn) {
+                $etudiantId = $id;
+        
+                $sql = "
+                    SELECT Matiere.libelle AS matiere, Note.note , Matiere.coef
                     FROM Note
                     INNER JOIN Matiere ON Note.idMatiere = Matiere.idMat
-                    WHERE Note.idEtudiant = '$id'
+                    WHERE Note.idEtudiant = '$etudiantId'
                 ";
-            
-                $result = mysqli_query($conn, $sql);
-            
-                if (mysqli_num_rows($result) > 0) {
-                    // output data of each row
-                    $data = [];
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $data[] = $row;
+        
+                $result = $conn->query($sql);
+        
+                $notes = [];
+        
+                if ($result) {
+                    while ($row = $result->fetch_assoc()) {
+                        $notes[] = $row;
                     }
-                    return $data;
                 }
-                
-                return [];
+        
+                return $notes;
             }
             
 
