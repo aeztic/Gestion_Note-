@@ -20,10 +20,20 @@
         </div>
         <ul class="nav-list">
             <li>
-                <i class='bx bx-search'></i>
-                <input type="text" placeholder="Search...">
-                <span class="tooltip">Search</span>
+                <form action="" method="post" name="search" action="../../configues/configsearch.php  ">
+                    <i class='bx bx-search'></i>
+                    <input type="text" name="valueToSearch" placeholder="Search...">
+                    <span class="tooltip">Search</span>
+                </form>
             </li>
+       <!-- <div class="container">
+            <table>
+              <?php 
+              //include("../configues/configsearch.php");
+                ?>
+            </table>
+          </div> -->   
+
             <li>
                 <a href="index.php">
                     <i class='bx bx-grid-alt'></i>
@@ -36,14 +46,14 @@
                     <i class='bx bx-user'></i>
                     <span class="links_name">Groupes</span>
                 </a>
-                <span class="tooltip">User</span>
+                <span class="tooltip">Groupes</span>
             </li>
             <li>
                 <a href="addStudents.php">
                     <i class='bx bx-chat'></i>
                     <span class="links_name">Add students</span>
                 </a>
-                <span class="tooltip">Messages</span>
+                <span class="tooltip">Add students</span>
             </li>
             <li>
                 <a href="#">
@@ -98,28 +108,28 @@
 
 
     <script>
-    let sidebar = document.querySelector(".sidebar");
-    let closeBtn = document.querySelector("#btn");
-    let searchBtn = document.querySelector(".bx-search");
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        let searchBtn = document.querySelector(".bx-search");
 
-    closeBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-        menuBtnChange(); //calling the function(optional)
-    });
+        closeBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("open");
+            menuBtnChange(); //calling the function(optional)
+        });
 
-    searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
-        sidebar.classList.toggle("open");
-        menuBtnChange(); //calling the function(optional)
-    });
+        searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
+            sidebar.classList.toggle("open");
+            menuBtnChange(); //calling the function(optional)
+        });
 
-    // following are the code to change sidebar button(optional)
-    function menuBtnChange() {
-        if (sidebar.classList.contains("open")) {
-            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
-        } else {
-            closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+            if (sidebar.classList.contains("open")) {
+                closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+            } else {
+                closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+            }
         }
-    }
     </script>
 </body>
 
