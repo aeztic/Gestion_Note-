@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 <?php
 //include("../../back-end/configues/configsearch.php");
  
 ?>
 
+=======
+>>>>>>> 0ab851b95b044d58a02a270e785c494ff29a8ec9
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
@@ -24,14 +27,15 @@
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav-list">
-            <li>
-                <form action="" method="post" name="search">
+            <!-- <li>
+                <form method="post" name="search">
+>>>>>>> 0ab851b95b044d58a02a270e785c494ff29a8ec9
                     <i class='bx bx-search'></i>
                     <input type="text" name="valueToSearch" id="searchInput" placeholder="Search...">
                     <span class="tooltip">Search</span>
                 </form>
-            </li>
-        
+            </li> -->
+
 
             <li>
                 <a href="index.php">
@@ -107,37 +111,37 @@
 
 
     <script>
-        let sidebar = document.querySelector(".sidebar");
-        let closeBtn = document.querySelector("#btn");
-        let searchBtn = document.querySelector(".bx-search");
-        let searchInput = document.getElementById("searchInput");
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+    let searchInput = document.getElementById("searchInput");
 
 
-        closeBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("open");
-            menuBtnChange(); //calling the function(optional)
-        });
+    closeBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        menuBtnChange(); //calling the function(optional)
+    });
 
-        searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
-            sidebar.classList.toggle("open");
-            menuBtnChange(); //calling the function(optional)
-        });
+    searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
+        sidebar.classList.toggle("open");
+        menuBtnChange(); //calling the function(optional)
+    });
 
 
-        searchInput.addEventListener("keyup", (event) => {
-            if (event.key === "Enter") {
-                document.forms["searchForm"].submit();
-            }
-        });
-
-        // following are the code to change sidebar button(optional)
-        function menuBtnChange() {
-            if (sidebar.classList.contains("open")) {
-                closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
-            } else {
-                closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
-            }
+    searchInput.addEventListener("keyup", (event) => {
+        if (event.key === "Enter") {
+            document.forms["searchForm"].submit();
         }
+    });
+
+    // following are the code to change sidebar button(optional)
+    function menuBtnChange() {
+        if (sidebar.classList.contains("open")) {
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+        } else {
+            closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+        }
+    }
     </script>
 </body>
 

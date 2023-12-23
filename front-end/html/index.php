@@ -28,6 +28,12 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
 
     <section class="home-section">
         <div class="text">Dashboard</div>
+        <div>
+            <form class="search-container">
+                <input type="text" id="search-bar" placeholder="What can I help you with today?">
+                <a href=""></a>
+            </form>
+        </div>
         <div class="table-wrapper">
             <table class="fl-table">
                 <thead>
