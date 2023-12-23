@@ -19,6 +19,14 @@
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav-list">
+            <!-- <li>
+                <form method="post" name="search">
+                    <i class='bx bx-search'></i>
+                    <input type="text" name="valueToSearch" id="searchInput" placeholder="Search...">
+                    <span class="tooltip">Search</span>
+                </form>
+            </li> -->
+
 
             <li>
                 <a href="index.php">
