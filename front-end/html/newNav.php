@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-<?php
-//include("../../back-end/configues/configsearch.php");
- 
-?>
 
-=======
->>>>>>> 0ab851b95b044d58a02a270e785c494ff29a8ec9
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
@@ -29,12 +22,12 @@
         <ul class="nav-list">
             <!-- <li>
                 <form method="post" name="search">
->>>>>>> 0ab851b95b044d58a02a270e785c494ff29a8ec9
                     <i class='bx bx-search'></i>
                     <input type="text" name="valueToSearch" id="searchInput" placeholder="Search...">
                     <span class="tooltip">Search</span>
                 </form>
             </li> -->
+        
 
 
             <li>

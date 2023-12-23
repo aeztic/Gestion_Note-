@@ -5,7 +5,21 @@ $connection = new Connection();
 $connection->selectDatabase('project'); 
 include('../../back-end/classes/etudiant.php');
 $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
+
+if (isset($_POST['submit'])) {
+
+    $valueToSearch = $_POST['valueToSearch'];
+
+    if($valueToSearch !== ""){
+        $notesEtudiant = Etudiant::getNotesForEtudiant($valueToSearch , $connection->conn); 
+        if ($notesEtudiant) {
+            header("Location: preview.php?id=$valueToSearch");  
+          }
+// exit();
+}
+}
 ?>
+
 
 
 
@@ -17,7 +31,9 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/navStyle.css">
+    <link rel="stylesheet" href="../css/search.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Admin Dashboard school</title>
 </head>
 
@@ -29,9 +45,11 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
     <section class="home-section">
         <div class="text">Dashboard</div>
         <div>
-            <form class="search-container">
-                <input type="text" id="search-bar" placeholder="What can I help you with today?">
-                <a href=""></a>
+            <form name="search" method="post" class="search-container">
+            <input  type="text" name="valueToSearch" id="searchInput" placeholder="Search with ID...">
+                 <button class="btn-search" type="submit" name="submit">
+                <i class='bx bx-search'></i>
+                </button> 
             </form>
         </div>
         <div class="table-wrapper">
@@ -79,6 +97,8 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
             </table>
         </div>
     </section>
+
+    
 
 </body>
 
