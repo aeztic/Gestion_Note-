@@ -1,3 +1,8 @@
+<?php
+//include("../../back-end/configues/configsearch.php");
+
+?>
+
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
@@ -20,19 +25,13 @@
         </div>
         <ul class="nav-list">
             <li>
-                <form action="" method="post" name="search" action="../../configues/configsearch.php  ">
+                <form action="" method="post" name="search" action="../../back-end/configues/configsearch.php">
                     <i class='bx bx-search'></i>
-                    <input type="text" name="valueToSearch" placeholder="Search...">
+                    <input type="text" name="valueToSearch" id="searchInput" placeholder="Search...">
                     <span class="tooltip">Search</span>
                 </form>
             </li>
-       <!-- <div class="container">
-            <table>
-              <?php 
-              //include("../configues/configsearch.php");
-                ?>
-            </table>
-          </div> -->   
+        
 
             <li>
                 <a href="index.php">
@@ -84,7 +83,7 @@
                 <span class="tooltip">Saved</span>
             </li>
             <li>
-                <a href="#">
+                <a href="../../front-end/html/settings.php">
                     <i class='bx bx-cog'></i>
                     <span class="links_name">Setting</span>
                 </a>
@@ -111,6 +110,8 @@
         let sidebar = document.querySelector(".sidebar");
         let closeBtn = document.querySelector("#btn");
         let searchBtn = document.querySelector(".bx-search");
+        let searchInput = document.getElementById("searchInput");
+
 
         closeBtn.addEventListener("click", () => {
             sidebar.classList.toggle("open");
@@ -120,6 +121,13 @@
         searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
             sidebar.classList.toggle("open");
             menuBtnChange(); //calling the function(optional)
+        });
+
+
+        searchInput.addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                document.forms["searchForm"].submit();
+            }
         });
 
         // following are the code to change sidebar button(optional)
