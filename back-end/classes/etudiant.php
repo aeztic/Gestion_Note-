@@ -59,15 +59,21 @@ class Etudiant {
         
         }
 
-        static function deleteEtudiant($tableName,$conn,$id){
+        public static function deleteEtudiant($tableName, $conn, $id) {
             
-            $sql = "DELETE FROM $tableName WHERE id='$id'";
-        
-        if (mysqli_query($conn, $sql)) {
-            
-            //header("Location:read.php");
-        }
+            $deleteNotesSql = "DELETE FROM note WHERE idEtudiant = '$id'";
+            if (!mysqli_query($conn, $deleteNotesSql)) {
+                
+                echo "Error deleting related notes: " . mysqli_error($conn);
+                return;
             }
+    
+            // Now, delete the record from the 'etudiant' table
+            $deleteEtudiantSql = "DELETE FROM $tableName WHERE id = '$id'";
+            if (mysqli_query($conn, $deleteEtudiantSql)) {
+                header("Location:../../front-end/html/index.php");
+            } 
+        }
 
             public static function selectEtudiantByGrpId($tableName,$conn,$idGrp){
     
