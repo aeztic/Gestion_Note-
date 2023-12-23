@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/navStyle.css">
+    <link rel="stylesheet" href="../css/preview.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>Your Title Here</title>
     <style>
@@ -35,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         display: none;
     }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
     <script>
     function editNote(noteId) {
         const noteElement = document.getElementById(`note-${noteId}`);
@@ -43,21 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (noteElement && editInput) {
             noteElement.style.display = 'none';
             editInput.style.display = 'inline-block';
-
-            editInput.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-                    saveEdit(noteId);
-                }
-            });
+            editInput.value = noteElement.innerText; // Set input value to current note text
+            editInput.focus(); // Focus on the input field
         }
     }
 
     function saveEdit(noteId) {
         const editInput = document.getElementById(`edit-input-${noteId}`);
         const noteElement = document.getElementById(`note-${noteId}`);
+        const form = document.getElementById(`edit-form-${noteId}`);
 
-        if (editInput && noteElement) {
+        if (editInput && noteElement && form) {
             const newNoteValue = editInput.value;
             noteElement.innerText = newNoteValue;
 
@@ -65,11 +64,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             noteElement.style.display = 'inline-block';
 
             // Submit the form
-            const form = document.getElementById(`edit-form-${noteId}`);
             form.submit();
         }
     }
+
+    function downloadAsPDF() {
+        const table = document.querySelector('.fl-table');
+        const pdfOptions = {
+            margin: 10,
+            filename: 'table_export.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            }
+        };
+
+        // Use html2pdf to create the PDF
+        html2pdf().from(table).set(pdfOptions).save();
+    }
     </script>
+
+
+
+
 </head>
 
 <body>
@@ -99,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <th >$note[matiere]</th>
                                 <td>$note[coef]</td>
                                 <td>
-                                    <form id='edit-form-$note[idNote]' method='post' action='update_note.php'>
+                                    <form id='edit-form-$note[idNote]' method='post' >
                                         <span id='note-$note[idNote]'>$note[note]</span>
                                         <input type='text' class='edit-input' name='note' value='$note[note]' />
                                         <input type='hidden' name='id' value='$note[idNote]' />
@@ -121,7 +141,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 </tbody>
             </table>
         </div>
+        <div class="buttons-div">
+            <a href='delete.php?id=<?php echo $id?>'>
+                <button class="noselect custom-button1"><span class="text-button">Delete</span><span class="icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path
+                                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                            </path>
+                        </svg></span></button>
+            </a>
+
+            <button class="noselect custom-button2" onclick="downloadAsPDF()"><span
+                    class="text-button">Download</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+                        <path d="M19 9h-4V3H9v6H5l7 8zM4 19h16v2H4z"></path>
+                    </svg></span></button>
+
+        </div>
     </section>
+
+
+
+
 </body>
 
 </html>
