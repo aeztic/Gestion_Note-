@@ -1,6 +1,6 @@
 <?php
 //include("../../back-end/configues/configsearch.php");
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
         </div>
         <ul class="nav-list">
             <li>
-                <form action="" method="post" name="search" action="../../back-end/configues/configsearch.php">
+                <form action="" method="post" name="search">
                     <i class='bx bx-search'></i>
                     <input type="text" name="valueToSearch" id="searchInput" placeholder="Search...">
                     <span class="tooltip">Search</span>
