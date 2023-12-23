@@ -1,12 +1,12 @@
 <?php
 
 
-    include("../../back-end/classes/connection.php");
-    $connection = new Connection();
-    $connection->selectDatabase('project'); 
-    include('../../back-end/classes/etudiant.php');
-    include('../../back-end/classes/groupe.php');
-    include("../../back-end/classes/matiere.php");
+    // include("../../back-end/classes/connection.php");
+    // $connection = new Connection();
+    // $connection->selectDatabase('project'); 
+    // include('../../back-end/classes/etudiant.php');
+    // include('../../back-end/classes/groupe.php');
+    // include("../../back-end/classes/matiere.php");
 
 
 
