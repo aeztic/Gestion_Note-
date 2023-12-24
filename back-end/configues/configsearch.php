@@ -14,7 +14,7 @@ if (isset($_REQUEST['search'])) {
 
     if($valueToSearch !== ""){
         $notesEtudiant = Etudiant::getNotesForEtudiant($valueToSearch , $connection1->conn); 
-        header('Location: test.php');
+        header('Location: preview.php');
     }
 // exit();
 }

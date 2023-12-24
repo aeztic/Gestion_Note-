@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
         $notesEtudiant = Etudiant::getNotesForEtudiant($valueToSearch , $connection->conn); 
         if ($notesEtudiant) {
             header("Location: preview.php?id=$valueToSearch");  
-          }
+        }
 // exit();
 }
 }
@@ -32,6 +32,7 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/navStyle.css">
     <link rel="stylesheet" href="../css/search.css">
+    <link rel="stylesheet" href="../css/import-export.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Admin Dashboard school</title>
@@ -46,12 +47,33 @@ if (isset($_POST['submit'])) {
         <div class="text">Dashboard</div>
         <div>
             <form name="search" method="post" class="search-container">
-            <input  type="text" name="valueToSearch" id="searchInput" placeholder="Search with ID...">
-                 <button class="btn-search" type="submit" name="submit">
-                <i class='bx bx-search'></i>
-                </button> 
+                <input type="text" name="valueToSearch" id="searchInput" placeholder="Search with ID...">
+                <button class="btn-search" type="submit" name="submit">
+                    <i class='bx bx-search'></i>
+                </button>
             </form>
         </div>
+
+        <div class="import-export">
+            <button class="noselect custom-button1"><span class="text-button">Import</span><span class="icon"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        style="fill: rgba(255, 255, 255, 1);">
+                        <path d="m12 18 4-5h-3V2h-2v11H8z"></path>
+                        <path
+                            d="M19 9h-4v2h4v9H5v-9h4V9H5c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-9c0-1.103-.897-2-2-2z">
+                        </path>
+                    </svg></span></button>
+
+            <button class="noselect custom-button2"><span class="text-button">Export</span><span class="icon"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        style="fill: rgba(255, 255, 255, 1);">
+                        <path d="M11 16h2V7h3l-4-5-4 5h3z"></path>
+                        <path
+                            d="M5 22h14c1.103 0 2-.897 2-2v-9c0-1.103-.897-2-2-2h-4v2h4v9H5v-9h4V9H5c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2z">
+                        </path>
+                    </svg></span></button>
+        </div>
+
         <div class="table-wrapper">
             <table class="fl-table">
                 <thead>
@@ -98,7 +120,7 @@ if (isset($_POST['submit'])) {
         </div>
     </section>
 
-    
+
 
 </body>
 

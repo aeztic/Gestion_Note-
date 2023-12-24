@@ -1,0 +1,135 @@
+.custom-button1 {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: green; /* Change background color to green */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.custom-button1, .custom-button1 span {
+    transition: 200ms;
+}
+
+.custom-button1 .text-button {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+}
+
+.custom-button1 .icon {
+    position: absolute;
+    border-left: 1px solid #00cc00;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-button1 svg {
+    width: 15px;
+    fill: #eee;
+}
+
+.custom-button1:hover {
+    background: #00cc00; /* Change background color on hover to a shade of green */
+}
+
+.custom-button1:hover .text-button {
+    color: transparent;
+}
+
+.custom-button1:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+}
+
+.custom-button1:focus {
+    outline: none;
+}
+
+.custom-button1:active .icon svg {
+    transform: scale(0.8);
+}
+
+.import-export{
+    display: flex;
+    justify-content: right;
+    margin-right: 70px;
+    margin-bottom: 15px;
+    
+    
+}
+
+a {
+    text-decoration: none;
+    
+}
+
+.custom-button2 {
+    margin-left: 10px;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: blue; /* Change background color to blue */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #2255e6; /* Change background color to a shade of blue */
+}
+
+.custom-button2, .custom-button2 span {
+    transition: 200ms;
+}
+
+.custom-button2 .text-button {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+}
+
+.custom-button2 .icon {
+    position: absolute;
+    border-left: 1px solid #1b1bc4; /* Change border color to a shade of blue */
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-button2 svg {
+    width: 15px;
+    fill: #eee;
+}
+
+.custom-button2:hover {
+    background: #3663ff; /* Change background color on hover to a shade of blue */
+}
+
+.custom-button2:hover .text-button {
+    color: transparent;
+}
+
+.custom-button2:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+}
+
+.custom-button2:focus {
+    outline: none;
+}
+
+.custom-button2:active .icon svg {
+    transform: scale(0.8);
+}
