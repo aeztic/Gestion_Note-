@@ -36,6 +36,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         display: none;
     }
     </style>
+    <style>
+    /* Style for the overlay */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Style for the popup form */
+    .popup-form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
     <script>
@@ -99,6 +122,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     <section class="home-section">
         <div class="text"></div>
+        <div class="buttons-div">
+            <a href="#" onclick="showPopup()">
+                <button class="noselect custom-button3"><span class="text-button">Add note</span><span class="icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: rgba(255, 255, 255, 1);">
+                            <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                        </svg></span></button>
+            </a>
+        </div>
+
+        <div class="overlay" id="overlay">
+            <div class="popup-form">
+                <!-- Your form content goes here -->
+                <form>
+                    <label for="note">Note:</label>
+                    <textarea id="note" name="note" rows="4" cols="50"></textarea>
+                    <br>
+                    <button type="button" onclick="hidePopup()">Close</button>
+                    <!-- You can add a submit button or additional form elements as needed -->
+                </form>
+            </div>
+        </div>
 
         <div class="table-wrapper">
             <table class="fl-table">
@@ -161,8 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     </section>
 
 
-
-
+    <script src="../js/popup.js"></script>
 </body>
 
 </html>

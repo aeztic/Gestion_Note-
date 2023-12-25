@@ -1,23 +1,23 @@
 <?php 
 session_start();
-include("../../back-end/classes/connection.php");
+include_once("../../back-end/classes/connection.php");
 $connection = new Connection();
 $connection->selectDatabase('project'); 
-include('../../back-end/classes/etudiant.php');
+include_once('../../back-end/classes/etudiant.php');
 $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
 
-if (isset($_POST['submit'])) {
+// if (isset($_POST['search'])) {
 
-    $valueToSearch = $_POST['valueToSearch'];
+//     $valueToSearch = $_POST['valueToSearch'];
 
-    if($valueToSearch !== ""){
-        $notesEtudiant = Etudiant::getNotesForEtudiant($valueToSearch , $connection->conn); 
-        if ($notesEtudiant) {
-            header("Location: preview.php?id=$valueToSearch");  
-        }
-// exit();
-}
-}
+//     if($valueToSearch !== ""){
+//         $notesEtudiant = Etudiant::getNotesForEtudiant($valueToSearch , $connection->conn); 
+//         if ($notesEtudiant) {
+//             header("Location: preview.php?id=$valueToSearch");  
+//         }
+// // exit();
+// }
+// }
 ?>
 
 
@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../css/navStyle.css">
     <link rel="stylesheet" href="../css/search.css">
     <link rel="stylesheet" href="../css/import-export.css">
+    <link rel="stylesheet" href="../css/popup.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Admin Dashboard school</title>
@@ -48,13 +49,15 @@ if (isset($_POST['submit'])) {
         <div>
             <form name="search" method="post" class="search-container">
                 <input type="text" name="valueToSearch" id="searchInput" placeholder="Search with ID...">
-                <button class="btn-search" type="submit" name="submit">
+                <button class="btn-search" type="submit" name="search">
                     <i class='bx bx-search'></i>
                 </button>
             </form>
         </div>
 
         <div class="import-export">
+
+
             <button class="noselect custom-button1"><span class="text-button">Import</span><span class="icon"><svg
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         style="fill: rgba(255, 255, 255, 1);">
@@ -64,6 +67,7 @@ if (isset($_POST['submit'])) {
                         </path>
                     </svg></span></button>
 
+
             <button class="noselect custom-button2"><span class="text-button">Export</span><span class="icon"><svg
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         style="fill: rgba(255, 255, 255, 1);">
@@ -72,6 +76,24 @@ if (isset($_POST['submit'])) {
                             d="M5 22h14c1.103 0 2-.897 2-2v-9c0-1.103-.897-2-2-2h-4v2h4v9H5v-9h4V9H5c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2z">
                         </path>
                     </svg></span></button>
+
+
+            <button onclick="showPopup()" class="noselect custom-button3"><span class="text-button">Add
+                    student</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                    </svg></span></button>
+
+        </div>
+
+        <div class="overlay" id="overlay">
+            <div class="popup-form">
+                <!-- Your form content goes here -->
+                <?php
+                
+                include("../../front-end/html/form.php")
+                ?>
+            </div>
         </div>
 
         <div class="table-wrapper">
@@ -121,7 +143,7 @@ if (isset($_POST['submit'])) {
     </section>
 
 
-
+    <script src="../js/popup.js"></script>
 </body>
 
 </html>

@@ -63,6 +63,7 @@
     justify-content: right;
     margin-right: 70px;
     margin-bottom: 15px;
+    margin-top: 10px;
     
     
 }
@@ -131,5 +132,67 @@ a {
 }
 
 .custom-button2:active .icon svg {
+    transform: scale(0.8);
+}
+
+.custom-button3 {
+    margin-left: 10px;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: #31304d; /* Change background color to blue */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #161a30; /* Change background color to a shade of blue */
+}
+
+.custom-button3, .custom-button3 span {
+    transition: 200ms;
+}
+
+.custom-button3 .text-button {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+}
+
+.custom-button3 .icon {
+    position: absolute;
+    border-left: 1px solid #31304d; /* Change border color to a shade of blue */
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-button3 svg {
+    width: 15px;
+    fill: #eee;
+}
+
+.custom-button3:hover {
+    background: #161a30; /* Change background color on hover to a shade of blue */
+}
+
+.custom-button3:hover .text-button {
+    color: transparent;
+}
+
+.custom-button3:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+}
+
+.custom-button3:focus {
+    outline: none;
+}
+
+.custom-button3:active .icon svg {
     transform: scale(0.8);
 }

@@ -4,9 +4,9 @@ $lastNameErrorMsg = "";
 $emailErrorMsg = "";
 $phoneErrorMsg = "";
 $GrpErrorMsg = "";
-// $firstNameErrorMsg = "";
-include("../../back-end/classes/etudiant.php");
-include("../../back-end/classes/connection.php");
+$firstNameErrorMsg = "";
+// include_once("../../back-end/classes/etudiant.php");
+// include_once("../../back-end/classes/connection.php");
 $connection = new Connection();
 $connection->selectDatabase('project'); 
 
@@ -44,6 +44,11 @@ if(isset($_POST["submit"])){
         $email = "";
         $phoneNum = "";
 
+                
+                // header("Location: ".$_SERVER['PHP_SELF']);
+                // exit();
+            
+        
 
         
         //exit();

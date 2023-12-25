@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['firsName'] = $row['firsName'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['password'];
-                header("Location: index.php");
+                header("Location: ../../front-end/html/index.php");
             }
             else{
                 $passwordErrorMsg = "Invalid password!";    
