@@ -1,9 +1,10 @@
 <?php
-
 session_start();
 
- include("../../front-end/html/newNav.php");
+include("../../front-end/html/newNav.php");
 include("../../back-end/classes/user.php");
+
+
 
 ?>
 
@@ -20,24 +21,29 @@ include("../../back-end/classes/user.php");
 <section class="from_container">
 <section class="container_form">
 
-            <h1 class="h1">Settings</h1>
-<form>
-            <input type="text" class="fname" name="fname" placeholder="New first name" value="<?php echo $_SESSION['firstname'] ?>" disabled>
-            <a for="username" href="#">Change Username</a>
+    <h1 class="h1">Settings</h1>
+    
+    <form method="post">
+        <input type="text" class="fname" name="fname" placeholder="New first name" value="<?php echo $_SESSION['firsName'] ?>">
+        <a for="username" href="#">Change Username</a>
 
-            <input type="text" class="lname" name="lname" placeholder="New last name" value="<?php echo $_SESSION['lastname'] ?>" disabled>
-            <a for="username" href="#">Change Username</a>
+        <input type="email" class="email" name="email" placeholder="New Email" value="<?php echo $_SESSION['email'] ?>">
+        <a for="email" href="#">Change Email</a>
 
-            <input type="email" class="email" name="email" placeholder="New Email">
-            <a for="email" href="#">Change Email</a>
+        <input type="password" class="password" name="password" placeholder="New Password" value="<?php echo isset($_SESSION['password']) ? $_SESSION['password'] : ''; ?>">
+        <a for="password" href="#">Change Password</a>
 
-            <input type="password" class="password" name="password" placeholder="New Password">
-            <a for="password" href="#">Change Password</a>
-
-            <a href="#" class="delete" onclick="deleteAccount()">Delete Account</a>
-        </form>
+        <button type="submit" class="save">Save Changes</button>
+        <button type="button" class="delete" onclick="deleteAccount()">Delete Account</button>
+    </form>
 
 </section>
 </section>
+
 </body>
 </html>
+
+<?php
+// Close the database connection
+$conn->close();
+?>
