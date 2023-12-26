@@ -1,11 +1,12 @@
 <?php 
+
 session_start();
 include_once("../../back-end/classes/connection.php");
 $connection = new Connection();
 $connection->selectDatabase('project'); 
 include_once('../../back-end/classes/etudiant.php');
 $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
-include_once("../../back-end/configues/import.php");
+
 
 
 // if (isset($_POST['search'])) {
@@ -170,24 +171,18 @@ include_once("../../back-end/configues/import.php");
         const file = event.target.files[0];
 
         if (file) {
-            const formData = new FormData();
-            formData.append('csvFile', file);
+            const reader = new FileReader();
 
-            // Send the CSV file to the server using fetch
-            fetch('../../back-end/configues/import.php', {
-                    method: 'POST',
-                    body: formData,
-                })
-                .then(response => response.text())
-                .then(data => {
-                    console.log('Server response:', data);
-                    // You can handle the server response here
-                    // For example, you might want to reload the page after importing
-                    location.reload();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+            reader.onload = function(e) {
+                // Parse the CSV content
+                const csvContent = e.target.result;
+
+                // You can now process the CSV content as needed
+                console.log('CSV Content:', csvContent);
+            };
+
+            // Read the file as text
+            reader.readAsText(file);
         }
     }
     </script>
