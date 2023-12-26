@@ -5,6 +5,8 @@ $connection = new Connection();
 $connection->selectDatabase('project'); 
 include_once('../../back-end/classes/etudiant.php');
 $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
+include_once("../../back-end/configues/import.php");
+
 
 // if (isset($_POST['search'])) {
 
@@ -58,14 +60,18 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
         <div class="import-export">
 
 
-            <button class="noselect custom-button1"><span class="text-button">Import</span><span class="icon"><svg
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            <button class="noselect custom-button1" onclick="importCSV()">
+                <span class="text-button">Import</span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         style="fill: rgba(255, 255, 255, 1);">
                         <path d="m12 18 4-5h-3V2h-2v11H8z"></path>
                         <path
                             d="M19 9h-4v2h4v9H5v-9h4V9H5c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-9c0-1.103-.897-2-2-2z">
                         </path>
-                    </svg></span></button>
+                    </svg>
+                </span>
+            </button>
 
 
             <button class="noselect custom-button2"><span class="text-button">Export</span><span class="icon"><svg
@@ -144,6 +150,47 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
 
 
     <script src="../js/popup.js"></script>
+    <script>
+    function importCSV() {
+        // Create an input element of type 'file'
+        const input = document.createElement('input');
+        input.type = 'file';
+
+        // Set accept attribute to only accept CSV files
+        input.accept = '.csv';
+
+        // Add event listener for the change event
+        input.addEventListener('change', handleFileSelect);
+
+        // Trigger a click on the input element to open the file dialog
+        input.click();
+    }
+
+    function handleFileSelect(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            const formData = new FormData();
+            formData.append('csvFile', file);
+
+            // Send the CSV file to the server using fetch
+            fetch('../../back-end/configues/import.php', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Server response:', data);
+                    // You can handle the server response here
+                    // For example, you might want to reload the page after importing
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+    </script>
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
@@ -27,7 +26,7 @@
                     <span class="tooltip">Search</span>
                 </form>
             </li> -->
-        
+
 
 
             <li>
@@ -44,13 +43,7 @@
                 </a>
                 <span class="tooltip">Groupes</span>
             </li>
-            <li>
-                <a href="addStudents.php">
-                    <i class='bx bx-chat'></i>
-                    <span class="links_name">Add students</span>
-                </a>
-                <span class="tooltip">Add students</span>
-            </li>
+
             <li>
                 <a href="#">
                     <i class='bx bx-pie-chart-alt-2'></i>

@@ -1,5 +1,4 @@
-<?php 
-include("../../back-end/configues/configForm.php");
+<?php include("../../back-end/configues/configForm.php");
 
 ?>
 
@@ -19,7 +18,7 @@ include("../../back-end/configues/configForm.php");
     <section class="from_container">
         <section class="container_form">
             <header>Add student</header>
-            <form action="" class="form" method="post">
+            <form action="../html/index.php" class="form" method="post">
                 <div class="input-box">
                     <label>First Name</label>
                     <input name="firstname" type="text" placeholder="Enter First name"

@@ -1,15 +1,24 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     include("../../back-end/classes/connection.php");
-    $connection = new Connection();
-    $connection->selectDatabase('project');
     include('../../back-end/classes/etudiant.php');
     include('../../back-end/classes/groupe.php');
-    include("../../back-end/classes/matiere.php");
+    include('../../back-end/classes/matiere.php');
+    include('../../back-end/configues/configFormNote.php');
+    
+    $connection = new Connection();
+    $connection->selectDatabase('project');
+    
     $id = $_GET['id'];
+    
+    // Fetch student and notes information
     $students = Etudiant::selectEtudiantById("Etudiant", $connection->conn, $id);
     $notesEtudiant = Etudiant::getNotesForEtudiant($id, $connection->conn);
+    $matieres = Matiere::selectAllMatieres('Matiere', $connection->conn);
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/navStyle.css">
     <link rel="stylesheet" href="../css/preview.css">
+    <link rel="stylesheet" href="../css/form.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>Your Title Here</title>
     <style>
@@ -49,48 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         justify-content: center;
         align-items: center;
     }
-
-    /* Style for the popup form */
-    .popup-form {
-        background: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
     <script>
-    function editNote(noteId) {
-        const noteElement = document.getElementById(`note-${noteId}`);
-        const editInput = document.getElementById(`edit-input-${noteId}`);
-
-        if (noteElement && editInput) {
-            noteElement.style.display = 'none';
-            editInput.style.display = 'inline-block';
-            editInput.value = noteElement.innerText; // Set input value to current note text
-            editInput.focus(); // Focus on the input field
-        }
-    }
-
-    function saveEdit(noteId) {
-        const editInput = document.getElementById(`edit-input-${noteId}`);
-        const noteElement = document.getElementById(`note-${noteId}`);
-        const form = document.getElementById(`edit-form-${noteId}`);
-
-        if (editInput && noteElement && form) {
-            const newNoteValue = editInput.value;
-            noteElement.innerText = newNoteValue;
-
-            editInput.style.display = 'none';
-            noteElement.style.display = 'inline-block';
-
-            // Submit the form
-            form.submit();
-        }
-    }
-
     function downloadAsPDF() {
         const table = document.querySelector('.fl-table');
         const pdfOptions = {
@@ -109,10 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         html2pdf().from(table).set(pdfOptions).save();
     }
     </script>
-
-
-
-
 </head>
 
 <body>
@@ -134,14 +103,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         <div class="overlay" id="overlay">
             <div class="popup-form">
-                <!-- Your form content goes here -->
-                <form>
-                    <label for="note">Note:</label>
-                    <textarea id="note" name="note" rows="4" cols="50"></textarea>
-                    <br>
-                    <button type="button" onclick="hidePopup()">Close</button>
-                    <!-- You can add a submit button or additional form elements as needed -->
-                </form>
+
+                <body>
+                    <section class="from_container">
+                        <section class="container_form">
+                            <header>Add note</header>
+                            <form action="" class="form" method="post">
+                                <div class="select-box">
+                                    <select name="matieres">
+                                        <option hidden>Matieres</option>
+                                        <?php
+                                        foreach ($matieres as $matiere) {
+                                            echo "<option value='$matiere[idMat]' >$matiere[libelle]</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="input-box">
+                                    <label>Note</label>
+                                    <input name="Note-value" type="text" pattern="\d+(\.\d{1,2})?" placeholder=""
+                                        value="" />
+                                </div>
+                                <div class="input-box" hidden>
+                                    <label hidden>etudiant</label>
+                                    <input name="idEtudiant" type="text" value="<?php echo $id ?>" hidden />
+                                </div>
+                                <span style="color: red;"><?php echo $error_message; ?></span>
+                                <button name="add-student" onclick="hidePopup()">Submit</button>
+
+                            </form>
+                        </section>
+                    </section>
+                </body>
             </div>
         </div>
 
@@ -158,36 +151,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 </thead>
                 <tbody>
                     <?php
-                    if ($notesEtudiant > 0) {
+                    if (isset($notesEtudiant) && $notesEtudiant > 0) {
                         foreach ($notesEtudiant as $note) {
                             echo "<tr>
-                                <th >$note[matiere]</th>
-                                <td>$note[coef]</td>
-                                <td>
-                                    <form id='edit-form-$note[idNote]' method='post' >
-                                        <span id='note-$note[idNote]'>$note[note]</span>
-                                        <input type='text' class='edit-input' name='note' value='$note[note]' />
-                                        <input type='hidden' name='id' value='$note[idNote]' />
-                                    </form>
-                                </td>
-                                <td>@mdo</td>
-                                <td>
-                                    <a href='javascript:void(0);' onclick='editNote($note[idNote])'>
-                                        <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' style='fill: rgba(49, 48, 77, 1);'>
-                                            <path d='M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z'></path>
+                                    <th >$note[matiere]</th>
+                                    <td>$note[coef]</td>
+                                    <td>
+                                        $note[note]
+                                    </td>
+                                    <td><b>$note[status]</b></td>
+                                    <td>
+                                        <a href='?id=$note[idNote]' class='edit-note'>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'
+                                            style='fill: rgba(49, 48, 77, 1);'>
+                                            <path
+                                                d='M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z'>
+                                            </path>
                                         </svg>
                                     </a>
-                                    <button class='edit-button' onclick='saveEdit($note[idNote])'>Save</button>
-                                </td>
-                            </tr>";
+                                
+                                    </td>
+                                </tr>";
                         }
                     }
                     ?>
                 </tbody>
             </table>
         </div>
+
         <div class="buttons-div">
-            <a href='delete.php?id=<?php echo $id?>'>
+            <a href='delete.php?id=<?php echo $id ?>'>
                 <button class="noselect custom-button1"><span class="text-button">Delete</span><span class="icon"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path
@@ -201,10 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
                         <path d="M19 9h-4V3H9v6H5l7 8zM4 19h16v2H4z"></path>
                     </svg></span></button>
-
         </div>
     </section>
-
 
     <script src="../js/popup.js"></script>
 </body>

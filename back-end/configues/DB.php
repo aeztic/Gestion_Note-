@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS Note (
     idNote INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     idEtudiant INT(6) UNSIGNED NOT NULL,
     idMatiere VARCHAR(5) NOT NULL,
+    status varchar(2) NOT NULL,
     note FLOAT,
     FOREIGN KEY (idEtudiant) REFERENCES Etudiant(id),
     FOREIGN KEY (idMatiere) REFERENCES Matiere(idMat)

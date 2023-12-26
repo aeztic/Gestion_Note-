@@ -7,8 +7,8 @@ $GrpErrorMsg = "";
 $firstNameErrorMsg = "";
 // include_once("../../back-end/classes/etudiant.php");
 // include_once("../../back-end/classes/connection.php");
-$connection = new Connection();
-$connection->selectDatabase('project'); 
+// $connection = new Connection();
+// $connection->selectDatabase('project'); 
 
 
 if(isset($_POST["submit"])){

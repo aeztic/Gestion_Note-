@@ -4,5 +4,5 @@ function showPopup() {
 
 function hidePopup() {
     document.getElementById('overlay').style.display = 'none';
-    
+    location.reload();
 }
