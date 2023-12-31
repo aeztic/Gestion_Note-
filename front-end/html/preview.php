@@ -1,24 +1,39 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    include("../../back-end/classes/connection.php");
-    include('../../back-end/classes/etudiant.php');
-    include('../../back-end/classes/groupe.php');
-    include('../../back-end/classes/matiere.php');
-    include('../../back-end/configues/configFormNote.php');
-    
-    $connection = new Connection();
-    $connection->selectDatabase('project');
-    
-    $id = $_GET['id'];
-    
-    // Fetch student and notes information
-    $students = Etudiant::selectEtudiantById("Etudiant", $connection->conn, $id);
-    $notesEtudiant = Etudiant::getNotesForEtudiant($id, $connection->conn);
-    $matieres = Matiere::selectAllMatieres('Matiere', $connection->conn);
+session_start();
+include("../../back-end/classes/connection.php");
+include("../../back-end/classes/etudiant.php");
+include("../../back-end/classes/groupe.php");
+include("../../back-end/classes/matiere.php");
+include("../../back-end/classes/notes.php"); 
+
+$connection = new Connection();
+$connection->selectDatabase("project");
+$idEtudiant = isset($_GET['id']) ? $_GET['id'] : null;
+$_SESSION["idE"] = $idEtudiant;
+$noteEtudiants = Etudiant::getNotesForEtudiant($idEtudiant, $connection->conn);
+
+if (isset($_POST["submit"])) {
+    $idNote = $_POST['idNote'];
+    $note = $_POST['note'];
+    Note::editNote($idNote, $note, $connection->conn);
+    $idNote=$note="";
+    header("Location: preview.php?id=$idEtudiant");
 }
 
+if (isset($_POST["add"])) {
+    $idNote = $_POST['idNote'];
+    $libelle = $_POST['subjectField'];
+    $coef = $_POST['coefficientField'];
+    $note = $_POST['noteField'];
 
+    Matiere::insertMatiere($connection->conn, $libelle, $coef);
 
+    $idMatiere = mysqli_insert_id($connection->conn);
+
+    Note::insertNote($connection->conn, $idEtudiant, $idMatiere, $note);
+    $idNote=$libelle=$coef=$note="";
+    header("Location: preview.php?id=$idEtudiant");
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,35 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="stylesheet" href="../css/navStyle.css">
     <link rel="stylesheet" href="../css/preview.css">
     <link rel="stylesheet" href="../css/form.css">
+    <!-- <link rel="stylesheet" href="../css/popup.css"> -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <title>Your Title Here</title>
-    <style>
-    .edit-input {
-        display: none;
-        border-radius: 5px;
-        color: #161A30;
-        box-shadow: inset;
-        padding-left: 7px;
-    }
 
-    .edit-button {
-        display: none;
-    }
-    </style>
-    <style>
-    /* Style for the overlay */
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-    }
-    </style>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
@@ -68,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         const table = document.querySelector('.fl-table');
         const pdfOptions = {
             margin: 10,
-            filename: 'table_export.pdf',
+            filename: 'note_etudiant.pdf',
             image: {
                 type: 'jpeg',
                 quality: 0.98
@@ -92,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <section class="home-section">
         <div class="text"></div>
         <div class="buttons-div">
-            <a href="#" onclick="showPopup()">
+            <a href='addNote.php?id=<?php echo $id ?>' onclick="openPopup2()">
                 <button class="noselect custom-button3"><span class="text-button">Add note</span><span class="icon"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             style="fill: rgba(255, 255, 255, 1);">
@@ -101,42 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </a>
         </div>
 
-        <div class="overlay" id="overlay">
-            <div class="popup-form">
 
-                <body>
-                    <section class="from_container">
-                        <section class="container_form">
-                            <header>Add note</header>
-                            <form action="" class="form" method="post">
-                                <div class="select-box">
-                                    <select name="matieres">
-                                        <option hidden>Matieres</option>
-                                        <?php
-                                        foreach ($matieres as $matiere) {
-                                            echo "<option value='$matiere[idMat]' >$matiere[libelle]</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="input-box">
-                                    <label>Note</label>
-                                    <input name="Note-value" type="text" pattern="\d+(\.\d{1,2})?" placeholder=""
-                                        value="" />
-                                </div>
-                                <div class="input-box" hidden>
-                                    <label hidden>etudiant</label>
-                                    <input name="idEtudiant" type="text" value="<?php echo $id ?>" hidden />
-                                </div>
-                                <span style="color: red;"><?php echo $error_message; ?></span>
-                                <button name="add-student" onclick="hidePopup()">Submit</button>
-
-                            </form>
-                        </section>
-                    </section>
-                </body>
-            </div>
-        </div>
 
         <div class="table-wrapper">
             <table class="fl-table">
@@ -146,41 +102,83 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <th>coefficient</th>
                         <th>Notes</th>
                         <th>Status</th>
-                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if (isset($notesEtudiant) && $notesEtudiant > 0) {
-                        foreach ($notesEtudiant as $note) {
-                            echo "<tr>
-                                    <th >$note[matiere]</th>
-                                    <td>$note[coef]</td>
-                                    <td>
-                                        $note[note]
-                                    </td>
-                                    <td><b>$note[status]</b></td>
-                                    <td>
-                                        <a href='?id=$note[idNote]' class='edit-note'>
-                                        <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'
-                                            style='fill: rgba(49, 48, 77, 1);'>
-                                            <path
-                                                d='M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z'>
-                                            </path>
-                                        </svg>
-                                    </a>
-                                
-                                    </td>
-                                </tr>";
+                        if ($noteEtudiants) {
+                            foreach ($noteEtudiants as $noteEtudiant) {
+                                echo " <tr>      
+                                        <td>{$noteEtudiant['matiere']}</td>
+                                        <td>{$noteEtudiant['coef']}</td>
+                                        <td>{$noteEtudiant['note']}</td>
+                                        <td>
+                                            <a onclick='openPopup(\"{$noteEtudiant['idNote']}\", \"{$noteEtudiant['note']}\")' >
+                                            <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' style='fill: rgba(22, 26, 48, 1);'>
+                                                <path
+                                                    d='M8.707 19.707 18 10.414 13.586 6l-9.293 9.293a1.003 1.003 0 0 0-.263.464L3 21l5.242-1.03c.176-.044.337-.135.465-.263zM21 7.414a2 2 0 0 0 0-2.828L19.414 3a2 2 0 0 0-2.828 0L15 4.586 19.414 9 21 7.414z'>
+                                                </path>
+                                            </svg>
+                                            </a>
+
+                                            <a  href='deleteNote.php?id={$noteEtudiant['idNote']}'><svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' style='fill: rgba(255, 0, 0, 1);'>
+                                            <path d='M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm10.618-3L15 2H9L7.382 4H3v2h18V4z'></path>
+                                        </svg></a>
+                                        </td>
+                                    </tr>";
+                            }
                         }
-                    }
-                    ?>
+                        ?>
                 </tbody>
             </table>
         </div>
 
+        <div id="editPopup" class="popup">
+            <section class="from_container">
+                <section class="container_form">
+                    <a href="" onclick="closePopup()" class="close"><i class='bx bx-x'></i></a>
+                    <header>edit note</header>
+                    <form method='post' class="form">
+                        <div class="input-box">
+                            <input type='hidden' id='idNote' name='idNote' />
+                            <label for='note'>New note :</label>
+                            <input type='float' id='note' name='note' />
+                        </div>
+                        <button type='submit' name='submit'>Save</button>
+                    </form>
+                </section>
+            </section>
+        </div>
+
+
+
+        <div id="addPopup" class="popup">
+            <section class="from_container">
+                <section class="container_form">
+                    <a href="" onclick="closePopup()" class="close"><i class='bx bx-x'></i></a>
+                    <header>Add student</header>
+                    <form method='post' action='preview.php?id=<?php echo $idEtudiant; ?>' class="form">
+                        <div class="input-box">
+                            <label for='subjectField'>Matiere :</label>
+                            <input type='text' id='subjectField' name='subjectField' />
+                        </div>
+                        <div class="input-box">
+                            <label for='coefficientField'>Coefficient :</label>
+                            <input type='float' id='coefficientField' name='coefficientField' />
+                        </div>
+                        <div class="input-box">
+                            <label for='noteField'>Note :</label>
+                            <input type='float' id='noteField' name='noteField' />
+                        </div>
+                        <button name="add">Submit</button>
+                    </form>
+                </section>
+            </section>
+
+        </div>
+
         <div class="buttons-div">
-            <a href='delete.php?id=<?php echo $id ?>'>
+            <a href='delete.php?id=<?php echo $idEtudiant ?>'>
                 <button class="noselect custom-button1"><span class="text-button">Delete</span><span class="icon"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path

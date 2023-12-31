@@ -1,58 +1,31 @@
 <?php
 
 class Note {
+
     public $idNote;
     public $idEtudiant;
     public $idMatiere;
     public $note;
-    public $status;
 
-    public function __construct( $idEtudiant, $idMatiere, $note ) {
-        $this->idEtudiant = $idEtudiant;
-        $this->idMatiere = $idMatiere;
-        $this->note = $note;
-        if( $this->note <10){
-            $this->status="NV";
-        }
-        else{
-            $this->status="V";
-        }
+    public static function insertNote($conn, $idEtudiant, $idMatiere, $note) {
+        $query = "INSERT INTO Note (idEtudiant, idMatiere, note) VALUES ('$idEtudiant', '$idMatiere', '$note')";
+        $result = mysqli_query($conn, $query);
     }
 
-    public function insertNote($tableName, $conn) {
-        $sql = "INSERT INTO $tableName (idEtudiant, idMatiere, note ,status ) VALUES ('$this->idEtudiant', '$this->idMatiere', '$this->note' , '$this->status')";
-        mysqli_query($conn, $sql);
-    }
-
-    public static function updateNote($note, $tableName, $conn, $id) {
-        if( $note <10){
-            $status="NV";
-        }
-        else{
-            $status="V";
-        }
-        $sql = "UPDATE $tableName SET note='$note->note' , status = '$status' WHERE idNote='$id'";
-        
+    public static function deleteNote($tableName, $conn, $id) {
+        $sql = "DELETE FROM $tableName WHERE idNote='$id'";
         if (mysqli_query($conn, $sql)) {
+            //header("Location:preview.php");
+        }
+    }
+
     
-            // header("Location:read.php");
+
+    public static function editNote($idNote, $note, $conn) {
+        $sql = "UPDATE Note SET note = '$note' WHERE idNote = '$idNote'";
+        if (mysqli_query($conn, $sql)) {
+            //header("Location: test1.php");
         } 
     }
-    static function selectNoteById($tableName,$conn,$id){
-
-    $sql = "SELECT note,status  FROM $tableName  WHERE idNote='$id' ";
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    $row = mysqli_fetch_assoc($result);
-    
-    }
-    return $row;
 }
-}
-  
-
-  
-
-
 ?>

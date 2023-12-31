@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
 
 <head>
@@ -26,9 +25,6 @@
                     <span class="tooltip">Search</span>
                 </form>
             </li> -->
-
-
-
             <li>
                 <a href="index.php">
                     <i class='bx bx-grid-alt'></i>
@@ -38,14 +34,21 @@
             </li>
             <li>
                 <a href="dashGrp.php">
-                    <i class='bx bx-user'></i>
+                    <i class='bx bx-group' style='color:#ffffff'></i>
                     <span class="links_name">Groupes</span>
                 </a>
                 <span class="tooltip">Groupes</span>
             </li>
+            <li>
+                <a href="addStudents.php">
+                    <i class='bx bx-user-plus'></i>
+                    <span class="links_name">Add student</span>
+                </a>
+                <span class="tooltip">Add student</span>
+            </li>
 
             <li>
-                <a href="#">
+                <a href="../../front-end/html/analytics.php">
                     <i class='bx bx-pie-chart-alt-2'></i>
                     <span class="links_name">Analytics</span>
                 </a>
@@ -53,27 +56,6 @@
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bx-folder'></i>
-                    <span class="links_name">File Manager</span>
-                </a>
-                <span class="tooltip">Files</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-cart-alt'></i>
-                    <span class="links_name">Order</span>
-                </a>
-                <span class="tooltip">Order</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-heart'></i>
-                    <span class="links_name">Saved</span>
-                </a>
-                <span class="tooltip">Saved</span>
-            </li>
-            <li>
-                <a href="../../front-end/html/settings.php">
                     <i class='bx bx-cog'></i>
                     <span class="links_name">Setting</span>
                 </a>
@@ -91,10 +73,6 @@
             </li>
         </ul>
     </div>
-
-
-
-
 
     <script>
     let sidebar = document.querySelector(".sidebar");

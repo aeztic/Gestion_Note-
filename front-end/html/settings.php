@@ -19,22 +19,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $user = Users::selectUserByEmail($tableName, $conn, $_SESSION['email']); // Adjust parameters as needed
 
-    if ($user && $user instanceof Users) {
-        // if ($user->verifyCurrentPassword($currentPassword)) {
-        //     // Current password is correct, update the password
-        //     $user->updatePassword($newPassword);
+//     if ($user && $user instanceof Users) {
+//         if ($user->verifyCurrentPassword($currentPassword)) {
+//             // Current password is correct, update the password
+//             $user->updatePassword($newPassword);
 
-            // Assuming you have a Users object with a method to update the user
-            Users::updateUser($user,$tableName,$conn,$id); // Adjust parameters as needed
+//             // Assuming you have a Users object with a method to update the user
+//             Users::updateUser($user,$tableName,$conn,$id); // Adjust parameters as needed
 
-            echo "Password updated successfully!";
-        } else {
-            echo "Current password is incorrect.";
-        }
-    } else {
-        echo "User not found.";
-    }
-}
+//             echo "Password updated successfully!";
+//         } else {
+//             echo "Current password is incorrect.";
+//         }
+//     } else {
+//         echo "User not found.";
+//     }
+// }
 
 
 

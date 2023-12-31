@@ -1,5 +1,4 @@
 <?php 
-
 session_start();
 include_once("../../back-end/classes/connection.php");
 $connection = new Connection();
@@ -7,20 +6,19 @@ $connection->selectDatabase('project');
 include_once('../../back-end/classes/etudiant.php');
 $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
 
+if (isset($_POST['search'])) {
 
+    $valueToSearch = $_POST['valueToSearch'];
 
-// if (isset($_POST['search'])) {
-
-//     $valueToSearch = $_POST['valueToSearch'];
-
-//     if($valueToSearch !== ""){
-//         $notesEtudiant = Etudiant::getNotesForEtudiant($valueToSearch , $connection->conn); 
-//         if ($notesEtudiant) {
-//             header("Location: preview.php?id=$valueToSearch");  
-//         }
-// // exit();
-// }
-// }
+    if($valueToSearch !== ""){
+        $notesEtudiant = Etudiant::getNotesForEtudiant($valueToSearch , $connection->conn); 
+        
+            header("Location: preview.php?id=$valueToSearch"); 
+            $valueToSearch = ""; 
+        
+// exit();
+}
+}
 ?>
 
 
@@ -37,10 +35,12 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
     <link rel="stylesheet" href="../css/search.css">
     <link rel="stylesheet" href="../css/import-export.css">
     <link rel="stylesheet" href="../css/popup.css">
+    <link rel="stylesheet" href="../css/analytics.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Admin Dashboard school</title>
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
 <body>
     <?php 
@@ -49,6 +49,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
 
     <section class="home-section">
         <div class="text">Dashboard</div>
+
         <div>
             <form name="search" method="post" class="search-container">
                 <input type="text" name="valueToSearch" id="searchInput" placeholder="Search with ID...">
@@ -58,6 +59,9 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
             </form>
         </div>
 
+        <div class="analytics">
+            <canvas id="groupPieChart" width="300" height="300"></canvas>
+        </div>
         <div class="import-export">
 
 
@@ -85,23 +89,17 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                     </svg></span></button>
 
 
-            <button onclick="showPopup()" class="noselect custom-button3"><span class="text-button">Add
-                    student</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
-                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
-                    </svg></span></button>
+            <a href="addStudents.php">
+                <button class="noselect custom-button3"><span class="text-button">Add
+                        student</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+                            <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                        </svg></span></button>
+            </a>
 
         </div>
 
-        <div class="overlay" id="overlay">
-            <div class="popup-form">
-                <!-- Your form content goes here -->
-                <?php
-                
-                include("../../front-end/html/form.php")
-                ?>
-            </div>
-        </div>
+
 
         <div class="table-wrapper">
             <table class="fl-table">
@@ -128,7 +126,7 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                                     <td>$student[email]</td>
                                     <td>$student[phoneNumber]</td>
                                     <td>
-                                        <a style='color:red;' href='preview.php?id=$student[id]'>
+                                        <a ' href='preview.php?id=$student[id]'>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' style='fill: rgba(49, 48, 77, 1);'>
                                     <path
                                         d='M14 12c-1.095 0-2-.905-2-2 0-.354.103-.683.268-.973C12.178 9.02 12.092 9 12 9a3.02 3.02 0 0 0-3 3c0 1.642 1.358 3 3 3 1.641 0 3-1.358 3-3 0-.092-.02-.178-.027-.268-.29.165-.619.268-.973.268z'>
@@ -138,19 +136,35 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
                                     </path>
                                             </svg>
                                         </a>
-                                        
-                                    </td>
-                                </tr>";
-                            }
-                        }
-                        ?>
+                                        <a ' href='delete.php?id=$student[id]'>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' style='fill: rgba(252, 0, 0, 1);;'>
+                                            <path
+                                                d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'>
+                                            </path>
+                                        </svg>
+                                        </a>
+                    </a>
+
+                    </td>
+                    </tr>";
+                    }
+                    }
+                    ?>
                 <tbody>
             </table>
         </div>
+        <div class="import-export">
+            <button class="noselect custom-button2" onclick="downloadAsPDF()"><span
+                    class="text-button">Download</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+                        <path d="M19 9h-4V3H9v6H5l7 8zM4 19h16v2H4z"></path>
+                    </svg></span></button>
+        </div>
+    </section>
     </section>
 
 
-    <script src="../js/popup.js"></script>
+
     <script>
     function importCSV() {
         // Create an input element of type 'file'
@@ -184,6 +198,74 @@ $students = Etudiant::selectAllEtudiants('Etudiant',$connection->conn);
             // Read the file as text
             reader.readAsText(file);
         }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the student data from PHP and convert it to a JavaScript array
+        var students = <?php echo json_encode($students); ?>;
+
+        // Count the number of students in each group
+        var groupCounts = {};
+        students.forEach(function(student) {
+            if (!groupCounts.hasOwnProperty(student.idGrp)) {
+                groupCounts[student.idGrp] = 0;
+            }
+            groupCounts[student.idGrp]++;
+        });
+
+        // Extract data for the pie chart
+        var groupLabels = Object.keys(groupCounts);
+        var groupData = Object.values(groupCounts);
+
+        // Create a pie chart using Chart.js
+        var ctx = document.getElementById('groupPieChart').getContext('2d');
+        var groupPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: groupLabels,
+                datasets: [{
+                    data: groupData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(223, 202, 255, 0.8)',
+                    ],
+                }],
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: true, // Set to false to control the aspect ratio
+                legend: {
+                    position: 'right',
+                    labels: {
+                        fontSize: 12, // Adjust font size as needed
+                    },
+                },
+            },
+        });
+    });
+
+
+
+    function downloadAsPDF() {
+        const table = document.querySelector('.fl-table');
+        const pdfOptions = {
+            margin: 10,
+            filename: 'listes_etudiant.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            }
+        };
+
+        // Use html2pdf to create the PDF
+        html2pdf().from(table).set(pdfOptions).save();
     }
     </script>
 </body>

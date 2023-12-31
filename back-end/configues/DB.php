@@ -14,7 +14,7 @@ GrpName varchar(50) NOT NULL
 
 $queryMatiere = "
 CREATE TABLE IF NOT EXISTS Matiere (
-    idMat varchar(5) NOT NULL PRIMARY KEY,
+    idMat INT(6) UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     libelle varchar(50) NOT NULL , 
     coef float(10) NOT NULL
 )";
@@ -39,12 +39,12 @@ $queryNote = "
 CREATE TABLE IF NOT EXISTS Note (
     idNote INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     idEtudiant INT(6) UNSIGNED NOT NULL,
-    idMatiere VARCHAR(5) NOT NULL,
-    status varchar(2) NOT NULL,
+    idMatiere INT(6) UNSIGNED ,
     note FLOAT,
     FOREIGN KEY (idEtudiant) REFERENCES Etudiant(id),
     FOREIGN KEY (idMatiere) REFERENCES Matiere(idMat)
 )";
+
 
 
 $queryUsers = "

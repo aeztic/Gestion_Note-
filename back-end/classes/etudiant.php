@@ -95,7 +95,7 @@ class Etudiant {
                 $etudiantId = $id;
         
                 $sql = "
-                    SELECT Matiere.libelle AS matiere, Note.note , Matiere.coef , Note.idNote , Note.status
+                    SELECT Matiere.libelle AS matiere, Note.note , Matiere.coef , Note.idNote 
                     FROM Note
                     INNER JOIN Matiere ON Note.idMatiere = Matiere.idMat
                     WHERE Note.idEtudiant = '$etudiantId'
