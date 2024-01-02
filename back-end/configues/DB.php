@@ -1,6 +1,7 @@
 <?php 
 
 include("../classes/connection.php");
+//instances connection
 $conn = new Connection ();
 
 $conn->createDatabase("project");
@@ -58,8 +59,9 @@ CREATE TABLE IF NOT EXISTS Users (
 ";
 
 
-
+//selecting our project database 
 $conn->selectDatabase("project");
+// create tables with createTable function 
 $conn->createTable($queryGroupes);
 $conn->createTable($queryEtudiant);
 $conn->createTable($queryMatiere);

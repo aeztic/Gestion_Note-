@@ -7,6 +7,7 @@ class Etudiant {
     private $password;
     public $phoneNumber;
     public $regDate;
+    //foreign key dial group 
     public $idGrp;
 
             public function __construct($firstname, $lastname, $email, $password, $phoneNumber , $idGrp) {
@@ -17,12 +18,13 @@ class Etudiant {
         $this->phoneNumber = $phoneNumber;
         $this->idGrp = $idGrp;
     }
-
+        //add student form
         public function insertEtudiant($tableName ,$conn){
             $sql = "INSERT INTO $tableName (firstname, lastname, email , password, phoneNumber , idGrp ) VALUES ('$this->firstname', '$this->lastname', '$this->email' , '$this->password' , '$this->phoneNumber' , '$this->idGrp')";
             mysqli_query($conn, $sql);
     }
     //selections des etudiants
+    //dashboard liste des etudiants
         public static function  selectAllEtudiants($tableName,$conn){
 
         $sql = "SELECT id, firstname, lastname,email ,phoneNumber , idGrp   FROM $tableName ";
@@ -37,7 +39,7 @@ class Etudiant {
             }
         
         }
-
+        //page preview , search bar , delete 
         static function selectEtudiantById($tableName,$conn,$id){
 
             $sql = "SELECT firstname, lastname,email ,phoneNumber ,  idGrp FROM $tableName  WHERE id='$id'";

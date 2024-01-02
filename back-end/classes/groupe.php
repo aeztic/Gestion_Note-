@@ -4,7 +4,7 @@ class Groupe{
 
     public $idGrp;
     public $name;
-
+    //page groupe 
     public static function selectAllgroupes($tableName,$conn){
         $sql = "SELECT idGrp, GrpName  FROM $tableName ";
         $result = mysqli_query($conn, $sql);

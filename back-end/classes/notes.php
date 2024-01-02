@@ -3,7 +3,9 @@
 class Note {
 
     public $idNote;
+    //foreign key
     public $idEtudiant;
+    //foreign key
     public $idMatiere;
     public $note;
 
