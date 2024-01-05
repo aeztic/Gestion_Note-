@@ -44,8 +44,8 @@ if(isset($_POST["submit"])){
         $email = "";
         $phoneNum = "";
 
-        // header("Location: ../../front-end/html/index.php");
-        // exit();
+        
+        
                 
             
         

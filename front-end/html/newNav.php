@@ -1,3 +1,7 @@
+<?php 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -65,8 +69,8 @@
                 <div class="profile-details">
                     <img src="../../images/2.png" alt="profileImg">
                     <div class="name_job">
-                        <div class="name">Prem Shahi</div>
-                        <div class="job">Web designer</div>
+                        <div class="name"><?php echo $_SESSION['firsName']  ?></div>
+                        <div class="job">Admin</div>
                     </div>
                 </div>
                 <a href="login.php"><i class='bx bx-log-out' id="log_out"></i></a>
